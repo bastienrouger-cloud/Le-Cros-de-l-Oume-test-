@@ -54,8 +54,17 @@ Contenu détaillé des pages d'activités : à définir une fois que tu m'auras 
 
 ## Prochaines étapes
 
-1. Init du repo git local + structure de dossiers (squelette vide).
-2. Toi : création du repo GitHub (vide, sans README auto-généré).
-3. Connexion du dossier local au repo distant, push de `main` et `test`.
-4. Squelette HTML/CSS de base (style.css, header/footer partagés).
+1. ~~Init du repo git local + structure de dossiers (squelette vide).~~ Fait.
+2. ~~Toi : création du repo GitHub (vide, sans README auto-généré).~~ Fait.
+3. ~~Connexion du dossier local au repo distant, push de `main` et `test`.~~ Fait — auth via token d'accès personnel (compte GitHub lié à Google, pas de mot de passe classique).
+4. Squelette HTML/CSS de base (style.css, header/footer partagés). ← on en est là
 5. Pages types une fois ton dessin reçu.
+
+## Statut (12/07/2026)
+
+Repo GitHub : https://github.com/bastienrouger-cloud/Le-Cros-de-l-Oume-test-
+Branches `main` et `test` créées et pushées, chacune trackée avec son remote.
+
+Workflow de travail : coder sur `test`, push, merge vers `main` quand une étape est validée. Pour le 2e PC plus tard : `git clone` de la même URL, même méthode d'auth (token).
+
+Prochaine session : squelette HTML/CSS + envoi du dessin des activités par Bastien.
