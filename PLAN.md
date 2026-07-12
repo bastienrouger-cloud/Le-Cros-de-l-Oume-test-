@@ -68,3 +68,35 @@ Branches `main` et `test` créées et pushées, chacune trackée avec son remote
 Workflow de travail : coder sur `test`, push, merge vers `main` quand une étape est validée. Pour le 2e PC plus tard : `git clone` de la même URL, même méthode d'auth (token).
 
 Prochaine session : squelette HTML/CSS + envoi du dessin des activités par Bastien.
+
+## Session du 12/07/2026 (soir) — décisions
+
+On a analysé la vraie structure du site de Ludivine (crosdeloume.com, fait sous Wix) pour s'en inspirer, sans obligation de copier à l'identique — c'est un exercice perso, pas une commande.
+
+**Menu réel repéré chez elle** : Accueil / À propos / Visite de ferme / Balade à cheval / Médiation équine / Projet Loungta / L'élevage (hub → Irish Cob + chiens de protection) / Contact.
+
+**Architecture retenue pour notre version** (schéma fait, voir capture partagée en session) :
+
+```
+/
+├── index.html
+├── pages/
+│   ├── a-propos.html
+│   ├── visite-ferme.html
+│   ├── balade-cheval.html
+│   ├── mediation-equine.html
+│   ├── projet-loungta.html
+│   ├── contact.html
+│   └── elevage/
+│       ├── index.html        → hub
+│       ├── irish-cob.html
+│       └── chiens-protection.html
+```
+
+Différences volontaires par rapport à l'original :
+- à-propos et contact traités comme pages transverses, séparées des activités (chez elle tout est mélangé dans le même menu).
+- Le carrousel Instagram embarqué (widget Wix) ne sera pas reproduit tel quel — on fera un carrousel d'images statiques en JS (`js/main.js`), plus simple et plus pertinent pour l'entraînement.
+- **Projet Loungta** : on ne sait pas encore ce que c'est concrètement (contenu de la page pas encore regardé en détail). À clarifier avant de décider de sa place définitive.
+- **Important** : la page/le contenu Projet Loungta sera préparé et testé uniquement sur la branche `test`, **pas mergé sur `main`** tant que ce n'est pas clarifié et validé. Merge sélectif à prévoir (ne pas tout merger d'un coup).
+
+**À faire à la prochaine session** : squelette HTML/CSS de base (style.css commun, header/footer via `partials/` + `js/main.js`), en commençant sur `test`.
