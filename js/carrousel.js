@@ -7,6 +7,7 @@
   const AUTOPLAY_DELAY = 4000;
 
   function initCarrousel(root) {
+    const viewport = root.querySelector('.carrousel-viewport');
     const track = root.querySelector('.carrousel-track');
     const items = Array.from(track.children);
     const prevBtn = root.querySelector('.carrousel-prev');
@@ -95,9 +96,12 @@
     if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetAutoplay(); });
     if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetAutoplay(); });
 
-    // pause au survol / focus clavier, reprend en sortant
-    root.addEventListener('mouseenter', stopAutoplay);
-    root.addEventListener('mouseleave', startAutoplay);
+    // pause au survol du cadre uniquement (pas toute la section, donc pas
+    // les points en dessous) ; le focus clavier, lui, couvre toute la section.
+    if (viewport) {
+      viewport.addEventListener('mouseenter', stopAutoplay);
+      viewport.addEventListener('mouseleave', startAutoplay);
+    }
     root.addEventListener('focusin', stopAutoplay);
     root.addEventListener('focusout', startAutoplay);
 
