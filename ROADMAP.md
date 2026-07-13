@@ -2,11 +2,17 @@
 
 Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met à jour au fur et à mesure — coche les étapes, ajoute des notes sous chaque section quand on avance ou qu'on dévie du plan de base.
 
+## État actuel (14/07/2026) — lecture rapide
+
+Site complet et fonctionnel, structure jugée propre : accueil, 4 pages d'activité (visite-ferme, balade-cheval, médiation-equine, projet-loungta), élevage (hub + irish-cob + chiens-protection), à-propos, contact. Toutes les images sont des placeholders SVG génériques et tous les textes sont volontairement de la matière de test (reformulée, pas copiée du vrai site) — **pas besoin de les remplacer par du vrai contenu pour cet exercice**, ce n'est pas l'objectif.
+
+Ce qui reste ouvert : tester sur d'autres navigateurs que Chrome/Safari mobile (section 7), perf/SEO de base — compression images, Lighthouse (section 8, jamais commencée). `main` et `test` ont divergé légèrement : `test` a 4 commits d'aujourd'hui (fixes mobiles) pas encore mergés dans `main` — à refaire via GitHub Desktop quand tu veux (commit déjà fait côté `test`, juste le merge qui manque).
+
 ## 1. Cadrage avant tout code
 
 - [x] Qui c'est pour, quel objectif : exercice perso d'entraînement (reproduction non officielle du site de Ludivine), pas de vente/prod réelle.
 - [x] Liste des pages nécessaires : voir arborescence ci-dessous (section 2).
-- [ ] Contenu textuel et visuel dispo ou à créer : à voir page par page, au moment de les coder. Pas de scraping du vrai site (pas nécessaire, on brainstorme la structure).
+- [x] Contenu textuel et visuel : toutes les pages ont du texte reformulé (pas copié du vrai site) et des images placeholder SVG uniques par usage. Décision assumée : pas de vraies photos/textes pour cet exercice, ce n'est pas l'objectif (confirmé par Bastien le 14/07).
 
 ## 2. Structure / arborescence
 
@@ -19,14 +25,14 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 │   ├── visite-ferme.html
 │   ├── balade-cheval.html
 │   ├── mediation-equine.html
-│   ├── projet-loungta.html      ← branche test uniquement, pas mergé sur main (contenu pas clarifié)
+│   ├── projet-loungta.html
 │   ├── contact.html
 │   └── elevage/
 │       ├── index.html          ← hub
 │       ├── irish-cob.html
 │       └── chiens-protection.html
 ```
-- [ ] Wireframe rapide par page : pas encore fait, à prévoir avant d'attaquer le HTML de chaque page.
+- [x] Wireframe rapide par page : pas fait formellement (pas de maquette séparée), mais un pattern de page a émergé et a été réutilisé consciemment page après page (hero + carrousel/texte + FAQ pour les activités, showcase pour les hubs) — sert le même rôle.
 
 ## 3. Setup technique
 
@@ -49,24 +55,24 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 
 ## 6. Interactivité (JS) si besoin
 
-- [ ] Formulaire de contact (pas encore décidé si Formspree, Netlify Forms, ou autre — projet d'entraînement donc pas d'enjeu réel de destinataire). À faire avec `pages/contact.html`.
+- [x] Formulaire de contact : `pages/contact.html` + `js/contact-form.js` — formulaire de façade (préventDefault, pas d'envoi réel, message de confirmation simulé). Suffisant pour l'exercice, pas de vrai backend (Formspree etc.) branché — pas nécessaire ici.
 - [x] Menu mobile — hamburger sous 860px, branché en JS (`initMobileNav`).
 - [x] Carrousel d'images statique en JS : cadre fixe, une photo a la fois, fleches, defilement auto (pause au survol du cadre), points de navigation (barre de progression synchronisee), lightbox plein ecran, bouton agrandir.
 
 ## 7. Responsive + tests
 
-- [ ] Test sur mobile réel.
-- [ ] Vérif navigateurs courants.
+- [~] Test sur mobile réel : fait de façon ad hoc (pas systématique) — plusieurs bugs trouvés et corrigés sur iPhone réel (footer qui ne remplissait pas le bas, bouton contact masquant le hamburger, flash crème au rebond de scroll, bandeau sticky-cta trop large).
+- [ ] Vérif navigateurs courants : pas fait — testé seulement sur Chrome (dev) et Safari iOS (réel). Firefox/Edge non vérifiés.
 
 ## 8. Perf + SEO de base
 
-- [ ] Compression images, meta tags, alt text.
-- [ ] Lighthouse.
+- [ ] Compression images, meta tags, alt text : `alt` présents partout, meta description présente par page — reste la compression et un vrai passage meta/SEO. Pas commencé sérieusement.
+- [ ] Lighthouse : jamais lancé.
 
 ## 9. Déploiement
 
-- [ ] Hébergement : pas nécessaire ici (pas de client, pas de mise en prod), mais on peut simuler avec GitHub Pages pour s'entraîner à ce bout de la chaîne si tu veux.
-- [ ] DNS / SSL : sans objet pour ce projet, sauf si tu veux pousser l'exercice jusque-là.
+- [x] Hébergement : GitHub Pages en place et fonctionnel (après correction des chemins root-relative qui cassaient sous `/repo-name/`). `origin/main` est à jour avec la version publiée sauf les 4 derniers commits mobiles du 14/07, encore uniquement sur `origin/test`.
+- [ ] DNS / SSL : sans objet pour ce projet.
 
 ## Où on en est (à jour au 13/07/2026, soir)
 
