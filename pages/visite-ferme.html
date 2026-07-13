@@ -21,37 +21,128 @@
       <p class="tagline">Une matinée en famille au cœur de la ferme, entre poulains, chiens de troupeau et grands espaces.</p>
     </section>
 
+    <p class="page-intro">Le Cros de l'Oume ouvre ses portes pour visiter la ferme et échanger autour de notre démarche en faveur de la biodiversité et du bien-être animal.</p>
+
     <section class="page-content">
-      <div class="page-content-text">
-        <h2>Une immersion au rythme de la ferme</h2>
-        <p>Le temps d'une matinée, venez découvrir les coulisses du Cros de l'Oume : les poulains de l'année, les chiens de protection de troupeau et leurs chiots, et tous les habitants qui font vivre la ferme au quotidien.</p>
-        <p>On prend le temps d'expliquer le travail de sélection et d'éducation des animaux, la gestion des prairies et la place de la biodiversité dans notre façon de travailler — la cohabitation avec la faune sauvage y compris. Une visite pensée pour être accessible à toute la famille, petits et grands.</p>
-        <a href="/pages/contact.html" class="cta">Nous contacter</a>
+      <div class="carrousel">
+        <div class="carrousel-viewport">
+          <button class="carrousel-prev" aria-label="Image précédente">&#10094;</button>
+          <ul class="carrousel-track">
+            <li><img src="/assets/images/placeholder.svg" alt="Visite de la ferme en famille"></li>
+            <li><img src="/assets/images/placeholder.svg" alt="Rencontre avec les poulains"></li>
+            <li><img src="/assets/images/placeholder.svg" alt="Chiens de protection de troupeau"></li>
+          </ul>
+          <button class="carrousel-next" aria-label="Image suivante">&#10095;</button>
+          <button class="carrousel-expand" aria-label="Agrandir la photo">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 3H3v6M15 3h6v6M15 21h6v-6M9 21H3v-6"/>
+            </svg>
+          </button>
+        </div>
+        <div class="carrousel-dots"></div>
       </div>
-      <div class="page-content-image">
-        <img src="/assets/images/placeholder.svg" alt="Visite de la ferme en famille, poulains dans un pré">
+
+      <div class="page-content-text">
+        <h2>Une visite pensée pour toute la famille</h2>
+        <p>Rencontre avec les poulains et les chiens de protection de troupeau, échanges sur la gestion des prairies et la biodiversité de la ferme — une matinée accessible dès 6 ans.</p>
+        <p class="page-content-highlight">Le mardi de 10h à 12h — 7€ adulte, 5€ moins de 18 ans.</p>
+        <a href="/pages/contact.html" class="cta">Nous contacter</a>
       </div>
     </section>
 
-    <section class="practical-info">
-      <h2>Infos pratiques</h2>
-      <div class="cards-grid">
-        <article class="card info-card">
-          <h3>Durée</h3>
-          <p>Environ 2 heures</p>
-        </article>
-        <article class="card info-card">
-          <h3>Public</h3>
-          <p>Familles, dès 6 ans</p>
-        </article>
-        <article class="card info-card">
-          <h3>Tarif</h3>
-          <p>10 € par personne</p>
-        </article>
-        <article class="card info-card">
-          <h3>Réservation</h3>
-          <p>Sur rendez-vous</p>
-        </article>
+    <section class="page-video">
+      <h2>Découvrir en vidéo</h2>
+      <div class="video-placeholder">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/>
+        </svg>
+        <p>Vidéo à venir</p>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2>Infos complémentaires</h2>
+      <div class="accordion">
+
+        <div class="accordion-item">
+          <h3>
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-animaux" id="trigger-animaux">
+              Quels animaux allons-nous rencontrer ?
+            </button>
+          </h3>
+          <div class="accordion-panel" id="panel-animaux" role="region" aria-labelledby="trigger-animaux">
+            <div class="accordion-panel-inner">
+              <p>Chevaux Irish Cob, poulains de l'année, et chiens de protection de troupeau — de véritables partenaires du quotidien de la ferme, présentés dans le cadre de leur travail réel plutôt que comme simple attraction.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3>
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-biodiversite" id="trigger-biodiversite">
+              Comment la ferme s'engage pour la biodiversité ?
+            </button>
+          </h3>
+          <div class="accordion-panel" id="panel-biodiversite" role="region" aria-labelledby="trigger-biodiversite">
+            <div class="accordion-panel-inner">
+              <p>Le Cros de l'Oume suit un plan de gestion de la biodiversité qui concilie activité agricole et préservation des écosystèmes locaux. La visite est l'occasion de découvrir les espèces présentes sur le site et les démarches mises en place pour favoriser la faune et la flore.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3>
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-prairies" id="trigger-prairies">
+              Comment sont gérées les prairies ?
+            </button>
+          </h3>
+          <div class="accordion-panel" id="panel-prairies" role="region" aria-labelledby="trigger-prairies">
+            <div class="accordion-panel-inner">
+              <p>On échange autour des pratiques favorables au bien-être animal : besoins fondamentaux des chevaux, pâturage extensif et tournant, gestion des sols face aux enjeux du changement climatique — une approche proche de la permaculture équine.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3>
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-loup" id="trigger-loup">
+              Comment cohabitez-vous avec le loup ?
+            </button>
+          </h3>
+          <div class="accordion-panel" id="panel-loup" role="region" aria-labelledby="trigger-loup">
+            <div class="accordion-panel-inner">
+              <p>Élever des chevaux en zone de présence du loup demande une organisation spécifique. On parle de la protection des équidés et du rôle essentiel des chiens de protection de troupeau dans la défense du cheptel, au quotidien.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3>
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-horaires" id="trigger-horaires">
+              Quels sont les horaires et tarifs ?
+            </button>
+          </h3>
+          <div class="accordion-panel" id="panel-horaires" role="region" aria-labelledby="trigger-horaires">
+            <div class="accordion-panel-inner">
+              <p>Visite le mardi de 10h à 12h. En période estivale, dates variables — nous contacter pour connaître les disponibilités. Tarifs : 7€ par adulte, 5€ pour les moins de 18 ans.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3>
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-reservation" id="trigger-reservation">
+              Comment réserver ?
+            </button>
+          </h3>
+          <div class="accordion-panel" id="panel-reservation" role="region" aria-labelledby="trigger-reservation">
+            <div class="accordion-panel-inner">
+              <p>Par téléphone ou par email (à partir de 5 personnes minimum) — coordonnées sur la <a href="/pages/contact.html">page contact</a>. Pour une visite à une date différente de celle proposée, contactez-nous directement, on s'arrange dans la mesure du possible.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -60,5 +151,7 @@
   <div id="footer-placeholder"></div>
 
   <script src="/js/main.js" defer></script>
+  <script src="/js/carrousel.js" defer></script>
+  <script src="/js/accordion.js" defer></script>
 </body>
 </html>
