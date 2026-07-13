@@ -174,6 +174,12 @@ nav a:hover {
   text-decoration: none;
 }
 
+/* page courante : mis en evidence dans le header (marque aussi le parent
+   "Activités" si la page active se trouve dans son sous-menu) */
+nav a.active {
+  color: var(--color-accent-dark);
+}
+
 /* sous-menus : à plat par défaut (mobile), simple indentation */
 nav .submenu {
   padding-left: var(--gap-md);
@@ -181,6 +187,9 @@ nav .submenu {
 nav .submenu a {
   font-weight: 400;
   font-size: 0.95rem;
+}
+nav .submenu a.active {
+  font-weight: 700;
 }
 
 .nav-toggle::after {
@@ -868,6 +877,10 @@ footer {
 
 footer a {
   color: var(--color-cream);
+}
+footer a.active {
+  color: var(--color-accent);
+  font-weight: 700;
 }
 
 footer .footer-nav ul {

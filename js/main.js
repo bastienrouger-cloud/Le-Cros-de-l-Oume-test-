@@ -28,10 +28,46 @@ function initMobileNav() {
   });
 }
 
+// "/index.html" et "/" pointent vers la meme page : on normalise pour que
+// la comparaison marche quelle que soit la forme utilisee.
+function normalizeNavPath(pathname) {
+  return pathname === '' || pathname === '/' ? '/index.html' : pathname;
+}
+
+// Met en évidence, dans le header et le footer, le(s) lien(s) qui pointent
+// vers la page actuellement affichée. Si le lien actif est dans le sous-menu
+// "Activités", le parent est marqué actif aussi pour indiquer la section.
+function highlightActiveNav() {
+  const currentPath = normalizeNavPath(window.location.pathname);
+
+  document.querySelectorAll('nav a[href]').forEach((link) => {
+    let linkPath;
+    try {
+      linkPath = normalizeNavPath(new URL(link.getAttribute('href'), window.location.origin).pathname);
+    } catch (err) {
+      return;
+    }
+
+    if (linkPath !== currentPath) return;
+
+    link.classList.add('active');
+    link.setAttribute('aria-current', 'page');
+
+    const parentSubmenu = link.closest('.submenu');
+    if (parentSubmenu) {
+      const parentToggle = parentSubmenu.previousElementSibling;
+      if (parentToggle && parentToggle.classList.contains('nav-toggle')) {
+        parentToggle.classList.add('active');
+      }
+    }
+  });
+}
+
 async function init() {
   await includePartial('#header-placeholder', '/partials/header.html');
   await includePartial('#footer-placeholder', '/partials/footer.html');
   initMobileNav();
+  highlightActiveNav();
   // signale aux autres scripts (carrousel.js) que la mise en page est stable :
   // header/footer injectés = plus de décalage de layout à attendre avant de
   // démarrer des comportements sensibles au survol (autoplay du carrousel).
