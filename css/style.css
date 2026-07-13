@@ -789,14 +789,15 @@ body.lightbox-open {
 }
 
 @media (max-width: 640px) {
-  .sticky-cta {
-    left: var(--gap-md);
-    right: var(--gap-md);
-    justify-content: space-between;
-  }
-  /* pas assez de place pour le texte a cote du bouton en petit ecran */
+  /* pas assez de place pour le texte a cote du bouton en petit ecran :
+     on le cache et on laisse la barre se resserrer autour du bouton
+     (comme sur desktop) plutot que de l'etirer sur toute la largeur avec
+     un grand bandeau blanc vide a cote. */
   .sticky-cta-text {
     display: none;
+  }
+  .sticky-cta {
+    padding: 0.4rem;
   }
 }
 
