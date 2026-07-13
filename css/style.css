@@ -260,39 +260,57 @@ nav .submenu a {
 .hero-inner {
   position: relative;
   z-index: 1;
-  max-width: 1400px;
+  max-width: 640px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* embleme (deux tetes de cheval + yin-yang), en rotation continue tres
-   lente : clin d'oeil au yin-yang (symbole de mouvement/flux). Sur mobile,
-   pas de place pour deux exemplaires sans gener le texte : on le laisse de
-   cote (voir media query desktop plus bas). */
-@media (min-width: 900px) {
-  .hero-inner::before,
-  .hero-inner::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 320px;
-    height: 320px;
-    background-image: url('/assets/images/hero.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.09;
-    transform: translateY(-50%);
-    animation: hero-logo-spin 140s linear infinite;
-    pointer-events: none;
-    z-index: -1;
+/* embleme central : titre/sous-titre au-dessus, bouton en dessous.
+   Le halo lumineux (.hero-emblem-glow) et l'image tournent ENSEMBLE, portes
+   par le meme parent .hero-emblem qui recoit l'animation de rotation -->
+   l'eclairage reste toujours aligne avec les tetes de cheval, meme en tournant. */
+.hero-emblem {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin: var(--gap-lg) auto;
+  animation: hero-logo-spin 140s linear infinite;
+}
+
+@media (min-width: 640px) {
+  .hero-emblem {
+    width: 380px;
+    height: 380px;
   }
-  .hero-inner::before { left: -40px; }
-  .hero-inner::after { right: -40px; }
+}
+
+.hero-emblem-glow {
+  position: absolute;
+  inset: -35%;
+  border-radius: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(74, 93, 67, 0.05) 55%,
+    rgba(46, 43, 38, 0.35) 100%
+  );
+  filter: blur(28px);
+  z-index: 0;
+}
+
+.hero-emblem-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 @keyframes hero-logo-spin {
-  from { transform: translateY(-50%) rotate(0deg); }
-  to { transform: translateY(-50%) rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .hero-inner h1,
