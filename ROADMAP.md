@@ -82,4 +82,6 @@ Pattern "page type" valide sur `pages/visite-ferme.html` : hero, carrousel (2/3)
 
 `pages/elevage/irish-cob.html` cree avec un pattern different de visite-ferme (contenu plus texte + photo, moins "carte de visite") : intro image+texte (`.page-content-image`), accordeon reutilise pour la ligne de selection (5 items), puis un `.carrousel` pleine largeur (comme sur l'index) pour "Nos juments", et un `.page-cta` de fin. Seul ajout CSS : `.section-lead` (titre + paragraphe centres avant un composant pleine largeur), tout le reste reutilise l'existant.
 
+CTA flottant ajoute sur `irish-cob.html`, inspire de la barre "Ship Value" sticky des pages vaisseau de Star Citizen : le bouton "Nous contacter" du hero (`#hero-cta-anchor`) sert de repere, sa version flottante (`#sticky-cta`, nouveau `js/sticky-cta.js` + IntersectionObserver) apparait des qu'il sort du champ de vision en scrollant et disparait si on remonte au dessus. Le `.page-cta` redondant en bas de page a ete retire. Pattern reutilisable sur d'autres pages (il suffit des deux ids).
+
 Prochaine étape concrète : `pages/elevage/chiens-protection.html` (sur le meme pattern que irish-cob.html), `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).

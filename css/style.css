@@ -645,6 +645,71 @@ body.lightbox-open {
   margin: 0 auto;
 }
 
+/* --- CTA ancre + barre flottante (façon "Ship Value" sticky sur les
+   pages vaisseau de Star Citizen) : le CTA visible dans le hero sert de
+   repere, sa version flottante prend le relais des qu'il sort du champ de
+   vision en scrollant, et disparait si on remonte au dessus. ------------- */
+
+.hero-cta-anchor {
+  margin-top: var(--gap-lg);
+}
+
+.hero-cta-text {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: var(--gap-sm);
+}
+
+.sticky-cta {
+  position: fixed;
+  top: var(--gap-md);
+  right: var(--gap-md);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--gap-sm) var(--gap-md);
+  box-shadow: 0 10px 25px rgba(46, 43, 38, 0.15);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.sticky-cta.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.sticky-cta-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.sticky-cta .cta {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .sticky-cta {
+    left: var(--gap-md);
+    right: var(--gap-md);
+    justify-content: space-between;
+  }
+  /* pas assez de place pour le texte a cote du bouton en petit ecran */
+  .sticky-cta-text {
+    display: none;
+  }
+}
+
 .page-content {
   max-width: var(--container-max);
   margin: 0 auto;
