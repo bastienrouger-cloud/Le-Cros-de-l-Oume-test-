@@ -585,6 +585,9 @@ body.lightbox-open {
 
 @media (min-width: 1500px) {
   .card { flex-basis: calc(20% - (var(--gap-lg) * 4 / 5)); }
+  /* cartes etroites en ligne de 5 : on compense en les allongeant
+     (image plus haute) plutot que de les laisser petites/carrees. */
+  .card img { aspect-ratio: 2 / 3; }
 }
 
 .card:hover {
