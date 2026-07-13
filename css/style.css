@@ -992,6 +992,27 @@ body.lightbox-open {
   }
 }
 
+/* Variante pour plus de 2 elements (ex. essai "Nos activites" sur
+   l'index) : passe en wrap avec les memes paliers/exceptions que
+   .cards-grid (on saute le "4 par ligne" pour ne jamais se retrouver
+   avec un 4+1 disproportionne). */
+.showcase-grid--activities {
+  flex-wrap: wrap;
+}
+.showcase-grid--activities .showcase-card {
+  flex: 1 1 100%;
+}
+@media (min-width: 640px) {
+  .showcase-grid--activities .showcase-card {
+    flex-basis: calc(50% - var(--gap-lg) / 2);
+  }
+}
+@media (min-width: 1000px) {
+  .showcase-grid--activities .showcase-card {
+    flex-basis: calc(33.333% - (var(--gap-lg) * 2 / 3));
+  }
+}
+
 .showcase-card {
   position: relative;
   display: block;
