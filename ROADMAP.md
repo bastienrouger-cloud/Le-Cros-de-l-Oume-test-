@@ -84,4 +84,8 @@ Pattern "page type" valide sur `pages/visite-ferme.html` : hero, carrousel (2/3)
 
 CTA flottant ajoute sur `irish-cob.html`, inspire de la barre "Ship Value" sticky des pages vaisseau de Star Citizen : le bouton "Nous contacter" du hero (`#hero-cta-anchor`) sert de repere, sa version flottante (`#sticky-cta`, nouveau `js/sticky-cta.js` + IntersectionObserver) apparait des qu'il sort du champ de vision en scrollant et disparait si on remonte au dessus. Le `.page-cta` redondant en bas de page a ete retire. Pattern reutilisable sur d'autres pages (il suffit des deux ids).
 
+Fix global (toutes pages) : fond de `<html>` aligne sur le vert du footer, pour eviter le flash de fond creme lors du rebond de scroll (overscroll/rubber-band) en bas de page — pas intentionnel avant, corrige sur toutes les pages d'un coup (regle sur `html`, pas sur une page en particulier).
+
+`projet-loungta.html` : nouvelle variante `.page-hero--tall` (min-height 80vh, flex centre) pour les pages ou le hero est le seul contenu — affiche l'illustration de fond sur toute sa hauteur au lieu de la bande courte des autres pages.
+
 Prochaine étape concrète : `pages/elevage/chiens-protection.html` (sur le meme pattern que irish-cob.html), `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).

@@ -54,6 +54,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* le footer est toujours le dernier element : si on le prolonge avec la
+     meme couleur sur <html>, l'effet rebond du scroll (overscroll) en bas
+     de page revele du vert fonce au lieu du fond creme du body, ce qui
+     donne l'impression que le footer continue au lieu de "couper". */
+  background: var(--color-forest-dark);
 }
 
 body {
@@ -636,6 +641,14 @@ body.lightbox-open {
     url('/assets/images/herobackground.jpg');
   background-size: cover;
   background-position: center 30%;
+}
+
+.page-hero--tall {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .page-hero .tagline {
