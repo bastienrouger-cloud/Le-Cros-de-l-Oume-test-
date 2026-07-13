@@ -76,4 +76,8 @@ Pattern "page type" valide sur `pages/visite-ferme.html` : hero, carrousel (2/3)
 
 `pages/balade-cheval.html` et `pages/mediation-equine.html` crees sur ce meme pattern, contenu inspire (reformule, pas copie) du vrai site de Ludivine. Photos encore en placeholder.svg partout.
 
-Prochaine étape concrète : `pages/elevage/index.html` (+ irish-cob.html, chiens-protection.html), `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).
+`pages/elevage/index.html` cree : hub avec 2 grandes cartes pleine image (section `.showcase`), inspire de la section "Our Games" du site de Star Citizen (badge, degrade sombre, texte en bas). Pointe vers `irish-cob.html` et `chiens-protection.html`, pas encore crees.
+
+`pages/projet-loungta.html` cree en version minimale (header/footer + message "page en cours de preparation") — rappel : reste sur la branche `test` uniquement, pas mergee sur `main` tant que le contenu reel n'est pas clarifie.
+
+Prochaine étape concrète : `pages/elevage/irish-cob.html`, `pages/elevage/chiens-protection.html`, `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).
