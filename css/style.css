@@ -749,7 +749,7 @@ body.lightbox-open {
 /* --- FAQ / accordeon ------------------------------------------------------- */
 
 .faq {
-  max-width: var(--container-max);
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--gap-md) var(--gap-xl);
 }
