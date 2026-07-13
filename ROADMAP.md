@@ -128,6 +128,32 @@ CTA flottant (pattern `#hero-cta-anchor` / `#sticky-cta` / `js/sticky-cta.js`, d
 
 Prochaine étape : `pages/a-propos.html` — reste le seul morceau non traité. Contenu réel de Lulu déjà récupéré cette session (voir plus haut) : équipe chevaux/chiens déjà déplacée vers les pages élevage, donc à-propos doit garder qui-sommes-nous (Ludivine + Margot), nos valeurs, et la partie biodiversité/coexistence avec le loup — à restructurer pour ne pas répéter ce qui est déjà couvert ailleurs (élevage, activités).
 
+**Correction ulterieure (meme session)** : le CTA "Une question, une envie de venir nous rencontrer ?" plante juste au-dessus du footer faisait doublon avec le lien Contact deja present dans le footer. Retire (`.page-cta` supprime de `a-propos.html`) et remplace par le meme pattern flottant que les autres pages : CTA dans le hero (`#hero-cta-anchor`, texte "Une question ?") qui se detache en bandeau flottant (`#sticky-cta`) des qu'on scrolle en dessous, via `js/sticky-cta.js` (deja utilise ailleurs, nouveau sur cette page).
+
+## Session du 13/07/2026 (cloture) — merge test -> main via GitHub Desktop
+
+Site complet et fonctionnel : accueil, 4 pages d'activite (visite-ferme, balade-cheval, mediation-equine, projet-loungta), elevage (hub + irish-cob + chiens-protection), a-propos, contact. Toutes les pages testees en direct dans Chrome (localhost:8000) au fil de la session.
+
+Decision prise avec Bastien : on merge `test` dans `main` **en totalite**, y compris `projet-loungta.html` — la regle initiale de PLAN.md ("Loungta reste sur test tant que le contenu n'est pas clarifie") est levee, ce n'est qu'un exercice d'entrainement, pas d'enjeu a proteger un contenu pas encore valide.
+
+Marche a suivre donnee a Bastien pour GitHub Desktop (a faire cote utilisateur, pas par l'assistant — le bash de la session a un souci de cache decouvert plus tot, voir plus haut) : commit du gros paquet de changements sur `test`, push, passage sur `main`, fetch/pull, `Branch > Merge into current branch...` en choisissant `test`, push de `main`. Retour ensuite sur `test` pour la suite du travail.
+
+**Prochaine session** : verifier que le merge/push a bien ete fait (`git log`/`git status` sur les deux branches), puis attaquer les points encore ouverts de ROADMAP.md section 7-8 (test mobile reel, Lighthouse/perf/SEO de base) si Bastien veut continuer.
+
+## Session suivante — fix GitHub Pages (chemins racine-relatifs casses sous /repo/)
+
+Bug signale par Bastien : https://bastienrouger-cloud.github.io/Le-Cros-de-l-Oume-test-/ s'affichait completement casse (aucun style, pas de header/footer, images cassees), alors qu'en local (serveur Python) tout marchait.
+
+**Cause** : GitHub Pages sert un depot "projet" (pas `<compte>.github.io`) sous un sous-dossier `https://<compte>.github.io/<repo>/`, alors que tout le site utilise des chemins racine-relatifs (`/css/style.css`, `/js/main.js`, `/assets/...`, `/pages/...`) — pratique quand le site est servi a la racine d'un domaine (notre serveur Python local, ou un futur nom de domaine personnalise), mais un chemin comme `/css/style.css` pointe alors vers `https://<compte>.github.io/css/style.css` (raçine du **domaine** github.io, pas du repo) → 404/503 partout, y compris le fetch JS du header/footer.
+
+**Fix applique (hybride, pas de reecriture de tout le HTML)** :
+- `css/style.css` : les 3 `url('/assets/images/herobackground.jpg')` passes en `url('../assets/images/herobackground.jpg')` — un chemin CSS sans slash au debut se resout par rapport au fichier CSS lui-meme, donc independant de la racine du site, correct partout sans aucune logique supplementaire.
+- Chaque fichier HTML (10 au total : `index.html`, les 6 pages de `pages/`, les 3 pages de `pages/elevage/`) : le `<link rel="stylesheet">` et les `<script src>` sont passes en chemins relatifs classiques selon la profondeur du fichier (`css/style.css` a la racine, `../css/style.css` dans `pages/`, `../../css/style.css` dans `pages/elevage/`). Necessaire car ces balises se chargent avant que le moindre JS puisse tourner — impossible de les corriger dynamiquement.
+- `js/main.js` : ajout de `REPO_BASE` (calcule automatiquement : vide partout, sauf sur un domaine `*.github.io` ou il vaut `/<premier-segment-de-l-URL>`) et d'une fonction `fixupRootRelative(root)` qui prefixe tous les `href`/`src` commencant par `/` trouves dans `root`. Appelee une fois sur `document` entier au demarrage (corrige les liens/images deja presents dans la page), puis sur le conteneur juste apres l'injection de chaque partial (corrige les liens/images internes a `header.html`/`footer.html`, qui restent ecrits en chemins racine-relatifs classiques — inchanges — puisqu'ils sont injectes a des profondeurs differentes selon la page et ne peuvent pas etre en chemins relatifs fixes).
+- Resultat : tout le contenu des pages, les partials, et le reste des scripts (`carrousel.js`, `accordion.js`, `sticky-cta.js`, `team-modal.js`, `team-portrait.js`, `contact-form.js`) restent **inchanges** — seuls `main.js`, `style.css` et les balises `<link>/<script>` de chaque page ont bouge. Teste en local (`python -m http.server`) sur l'index et une page profonde (`pages/elevage/irish-cob.html`) : aucune regression.
+
+**A faire par Bastien** : recommiter/pusher (meme procedure GitHub Desktop que la session precedente : commit sur `test`, push, passer sur `main`, merge `test` dedans, push), puis recharger l'URL GitHub Pages pour confirmer que c'est corrige.
+
 ## Session du 13/07/2026 (fin) — pages/a-propos.html (premier jet + itérations) et pages/contact.html finalisée
 
 `pages/contact.html` créée puis retravaillée : hero plein ecran (`.page-hero--tall .page-hero--photo`, nouvelle variante avec l'image bien visible — degrade sombre leger au lieu du degrade creme quasi opaque du `.page-hero` standard, texte en blanc) et encart `.contact-card` (fond blanc semi-transparent flouté + ombre) qui porte coordonnées + formulaire, flottant sur la photo. Footer retiré sur cette page uniquement (`#footer-placeholder` simplement absent du HTML, `main.js` ne fait rien si l'élément n'existe pas). Formulaire de façade : `js/contact-form.js` bloque le submit reel, désactive les champs, affiche un message de confirmation simulé — site d'entraînement, aucun envoi reel.

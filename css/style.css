@@ -270,7 +270,7 @@ nav .submenu a.active {
   justify-content: center;
   background-image:
     linear-gradient(rgba(247, 242, 233, 0.72), rgba(237, 228, 211, 0.82)),
-    url('/assets/images/herobackground.jpg');
+    url('../assets/images/herobackground.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -703,7 +703,7 @@ body.lightbox-open {
   padding: var(--gap-xl) var(--gap-md) var(--gap-lg);
   background-image:
     linear-gradient(rgba(247, 242, 233, 0.78), rgba(237, 228, 211, 0.86)),
-    url('/assets/images/herobackground.jpg');
+    url('../assets/images/herobackground.jpg');
   background-size: cover;
   background-position: center 30%;
 }
@@ -1336,7 +1336,7 @@ footer .footer-nav ul {
 .page-hero--photo {
   background-image:
     linear-gradient(rgba(30, 28, 24, 0.35), rgba(30, 28, 24, 0.55)),
-    url('/assets/images/herobackground.jpg');
+    url('../assets/images/herobackground.jpg');
   background-size: cover;
   background-position: center 30%;
 }

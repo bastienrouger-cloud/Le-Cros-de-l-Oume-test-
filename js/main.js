@@ -2,15 +2,40 @@
    1. Injecte header/footer partagés (fetch + innerHTML)
    2. Branche le menu hamburger mobile une fois le header injecté
    Nécessite un serveur local (http://...) : fetch() ne fonctionne pas
-   en ouvrant le fichier directement (file://) à cause des restrictions CORS. */
+   en ouvrant le fichier directement (file://) à cause des restrictions CORS.
+
+   GitHub Pages : un depot "projet" (pas <compte>.github.io) est servi sous
+   un sous-dossier (https://<compte>.github.io/<repo>/), alors que tout le
+   site est ecrit avec des chemins racine-relatifs (/css/..., /pages/...) —
+   pratique quand le site est servi a la racine du domaine (serveur local,
+   ou un futur nom de domaine personnalise), mais ces chemins ratent alors
+   le prefixe /<repo>/. REPO_BASE calcule ce prefixe manquant (vide partout
+   ailleurs) et fixupRootRelative() l'ajoute a tous les attributs href/src
+   commencant par "/", pour que la meme base de code marche aux deux
+   endroits sans dupliquer les pages. */
+
+const REPO_BASE = location.hostname.endsWith('.github.io')
+  ? '/' + location.pathname.split('/').filter(Boolean)[0]
+  : '';
+
+function fixupRootRelative(root) {
+  if (!REPO_BASE) return; // rien a faire en local ou a la racine du domaine
+  root.querySelectorAll('[href^="/"], [src^="/"]').forEach((el) => {
+    const attr = el.hasAttribute('href') ? 'href' : 'src';
+    const value = el.getAttribute(attr);
+    if (value.startsWith(REPO_BASE + '/')) return; // deja corrige
+    el.setAttribute(attr, REPO_BASE + value);
+  });
+}
 
 async function includePartial(selector, url) {
   const el = document.querySelector(selector);
   if (!el) return;
   try {
-    const res = await fetch(url);
+    const res = await fetch(REPO_BASE + url);
     if (!res.ok) throw new Error(`${url} → ${res.status}`);
     el.innerHTML = await res.text();
+    fixupRootRelative(el);
   } catch (err) {
     console.error("Erreur d'inclusion :", err);
     el.innerHTML = `<p style="color:red">Impossible de charger ${url} — sers le site via un serveur local (voir README/WORKFLOW).</p>`;
@@ -67,6 +92,7 @@ function highlightActiveNav() {
 }
 
 async function init() {
+  fixupRootRelative(document); // corrige les chemins deja presents dans la page (images, liens du corps)
   await includePartial('#header-placeholder', '/partials/header.html');
   await includePartial('#footer-placeholder', '/partials/footer.html');
   initMobileNav();
