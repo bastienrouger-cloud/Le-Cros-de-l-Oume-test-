@@ -667,8 +667,15 @@ body.lightbox-open {
     gap: var(--gap-xl);
   }
   .page-content-text,
-  .page-content-image,
+  .page-content-image {
+    flex: 1 1 0;
+  }
+  /* carrousel volontairement disproportionne par rapport au texte : 2/3
+     contre 1/3, plutot qu'un partage egal comme pour texte+image simple. */
   .page-content > .carrousel {
+    flex: 2 1 0;
+  }
+  .page-content > .carrousel ~ .page-content-text {
     flex: 1 1 0;
   }
 }
