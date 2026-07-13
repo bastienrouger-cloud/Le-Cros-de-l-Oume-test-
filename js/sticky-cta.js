@@ -16,7 +16,14 @@
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          floating.classList.toggle('is-visible', !entry.isIntersecting);
+          // n'affiche la barre flottante que si l'ancre est sortie par le
+          // HAUT du viewport (on a scrolle en dessous) — pas simplement
+          // "pas intersectante", ce qui est aussi vrai avant meme d'avoir
+          // atteint l'ancre (cas d'une ancre plus bas dans la page, ex.
+          // au milieu du contenu plutot que dans le hero). Sans ce check,
+          // la barre s'affichait des le chargement de la page.
+          const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+          floating.classList.toggle('is-visible', scrolledPast);
         });
       },
       { threshold: 0 }
