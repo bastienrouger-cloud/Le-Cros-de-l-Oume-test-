@@ -80,4 +80,6 @@ Pattern "page type" valide sur `pages/visite-ferme.html` : hero, carrousel (2/3)
 
 `pages/projet-loungta.html` cree en version minimale (header/footer + message "page en cours de preparation") — rappel : reste sur la branche `test` uniquement, pas mergee sur `main` tant que le contenu reel n'est pas clarifie.
 
-Prochaine étape concrète : `pages/elevage/irish-cob.html`, `pages/elevage/chiens-protection.html`, `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).
+`pages/elevage/irish-cob.html` cree avec un pattern different de visite-ferme (contenu plus texte + photo, moins "carte de visite") : intro image+texte (`.page-content-image`), accordeon reutilise pour la ligne de selection (5 items), puis un `.carrousel` pleine largeur (comme sur l'index) pour "Nos juments", et un `.page-cta` de fin. Seul ajout CSS : `.section-lead` (titre + paragraphe centres avant un composant pleine largeur), tout le reste reutilise l'existant.
+
+Prochaine étape concrète : `pages/elevage/chiens-protection.html` (sur le meme pattern que irish-cob.html), `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).

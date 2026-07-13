@@ -866,6 +866,27 @@ body.lightbox-open {
   margin-bottom: var(--gap-md);
 }
 
+/* --- Section lead (titre + court paragraphe centres, avant un composant
+   pleine largeur comme un carrousel — reutilisable partout ou on veut
+   introduire une galerie sans repartir sur un .page-intro dedie) --------- */
+
+.section-lead {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--gap-xl) var(--gap-md) 0;
+  text-align: center;
+}
+
+.section-lead h2 {
+  margin-bottom: var(--gap-sm);
+}
+
+.section-lead p {
+  max-width: 65ch;
+  margin: 0 auto;
+  color: var(--color-text-muted);
+}
+
 /* --- Showcase (hub elevage, inspire de la section "Our Games" de Star
    Citizen : grandes cartes pleine image, badge en haut, texte en bas sur
    degrade sombre) -------------------------------------------------------- */
