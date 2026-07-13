@@ -257,45 +257,47 @@ nav .submenu a {
   background: linear-gradient(var(--color-cream), var(--color-cream-dark));
 }
 
-/* embleme (deux tetes de cheval + yin-yang) agrandi, tres transparent, en
-   rotation continue tres lente en fond : clin d'oeil au yin-yang (symbole
-   de mouvement/flux) sans gener la lecture du texte. min-height sur .hero
-   ci-dessus evite que le cercle soit coupe par overflow:hidden. */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 380px;
-  height: 380px;
-  background-image: url('/assets/images/hero.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.09;
-  transform: translate(-50%, -50%);
-  animation: hero-logo-spin 140s linear infinite;
-  pointer-events: none;
-  z-index: 0;
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-@media (min-width: 640px) {
-  .hero {
-    min-height: 560px;
+/* embleme (deux tetes de cheval + yin-yang), en rotation continue tres
+   lente : clin d'oeil au yin-yang (symbole de mouvement/flux). Sur mobile,
+   pas de place pour deux exemplaires sans gener le texte : on le laisse de
+   cote (voir media query desktop plus bas). */
+@media (min-width: 900px) {
+  .hero-inner::before,
+  .hero-inner::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 320px;
+    height: 320px;
+    background-image: url('/assets/images/hero.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.09;
+    transform: translateY(-50%);
+    animation: hero-logo-spin 140s linear infinite;
+    pointer-events: none;
+    z-index: -1;
   }
-  .hero::before {
-    width: 560px;
-    height: 560px;
-  }
+  .hero-inner::before { left: -40px; }
+  .hero-inner::after { right: -40px; }
 }
 
 @keyframes hero-logo-spin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
 }
 
-.hero h1,
-.hero .tagline,
-.hero .cta {
+.hero-inner h1,
+.hero-inner .tagline,
+.hero-inner .cta {
   position: relative;
   z-index: 1;
 }
