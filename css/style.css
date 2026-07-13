@@ -602,7 +602,11 @@ body.lightbox-open {
 .page-hero {
   text-align: center;
   padding: var(--gap-xl) var(--gap-md) var(--gap-lg);
-  background-color: var(--color-sage-tint);
+  background-image:
+    linear-gradient(rgba(247, 242, 233, 0.78), rgba(237, 228, 211, 0.86)),
+    url('/assets/images/herobackground.jpg');
+  background-size: cover;
+  background-position: center 30%;
 }
 
 .page-hero .tagline {
@@ -638,6 +642,10 @@ body.lightbox-open {
   .page-content-image {
     flex: 1 1 0;
   }
+}
+
+.page-content-text .cta {
+  margin-top: var(--gap-sm);
 }
 
 .practical-info {
