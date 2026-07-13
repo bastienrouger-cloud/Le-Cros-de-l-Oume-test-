@@ -40,7 +40,7 @@
   --gap-md: 1rem;
   --gap-lg: 2rem;
   --gap-xl: 3.5rem;
-  --container-max: 1500px;
+  --container-max: 1650px;
   --transition: 0.2s ease;
 }
 
@@ -558,9 +558,14 @@ body.lightbox-open {
   gap: var(--gap-lg);
 }
 
+/* paliers explicites plutot qu'un flex-basis fluide unique : garantit
+   qu'on ne se retrouve jamais avec une ligne de 4 cartes + 1 carte seule
+   (le cas "disproportionne"). On saute volontairement le palier "4 par
+   ligne" : 1 -> 2 -> 3 -> 5. Avec 5 cartes au total ca donne 2+2+1 sur
+   petit ecran (impossible a eviter avec un nombre impair sans cas
+   particulier), 3+2 en moyen, 5 d'un coup en large. */
 .card {
-  flex: 1 1 280px;
-  max-width: 340px;
+  flex: 1 1 100%;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -568,6 +573,18 @@ body.lightbox-open {
   transition: transform var(--transition), box-shadow var(--transition);
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .card { flex-basis: calc(50% - var(--gap-lg) / 2); }
+}
+
+@media (min-width: 1000px) {
+  .card { flex-basis: calc(33.333% - (var(--gap-lg) * 2 / 3)); }
+}
+
+@media (min-width: 1500px) {
+  .card { flex-basis: calc(20% - (var(--gap-lg) * 4 / 5)); }
 }
 
 .card:hover {
