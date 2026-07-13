@@ -39,6 +39,7 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 - [x] Structure sémantique complète (header, nav, main, sections, footer) — fait sur `index.html`.
 - [x] Header/footer en partials, inclus via JS (`fetch`) — fait (`partials/header.html`, `partials/footer.html`, `js/main.js`).
 - [x] Contenu réel dans le HTML, pas de lorem ipsum — fait pour l'index.
+- ⚠️ Note pour toute future refonte du header : la mise en évidence de la page courante (nav "active") est gérée par `highlightActiveNav()` dans `js/main.js` (+ styles `.active` dans `css/style.css`) — à conserver/adapter si le header est retravaillé, sinon ce comportement disparaît silencieusement.
 
 ## 5. CSS ensuite
 
@@ -71,4 +72,8 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 
 `index.html` est considere comme boucle : structure, style, header/footer en partials, menu mobile, carrousel complet, hero personnalise (embleme + illustration de fond). Reste ouvert pour plus tard : formulaire de contact (lie a `pages/contact.html`, pas encore creee), et une nouvelle passe sur le PNG de l'embleme (cercle exterieur pas parfaitement rond).
 
-Prochaine étape concrète : pages types — dupliquer le squelette de `index.html` (header/footer/style déjà externalisés, donc léger à dupliquer) pour créer `pages/visite-ferme.html`, valider le pattern avant de répliquer sur les autres.
+Pattern "page type" valide sur `pages/visite-ferme.html` : hero, carrousel (2/3) + texte (1/3) avec horaire/tarif distingues et bouton contact centre, section video (placeholder), FAQ en accordeon (multi-ouvert, largeur 1400px). Nav "active" ajoutee en prime (header + footer, y compris le parent "Activités" quand une sous-page est active).
+
+`pages/balade-cheval.html` et `pages/mediation-equine.html` crees sur ce meme pattern, contenu inspire (reformule, pas copie) du vrai site de Ludivine. Photos encore en placeholder.svg partout.
+
+Prochaine étape concrète : `pages/elevage/index.html` (+ irish-cob.html, chiens-protection.html), `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).
