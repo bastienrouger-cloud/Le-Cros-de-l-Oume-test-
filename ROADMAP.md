@@ -68,11 +68,17 @@ Ce qui reste ouvert : tester sur d'autres navigateurs que Chrome/Safari mobile (
 
 - [ ] Compression images, meta tags, alt text : `alt` présents partout, meta description présente par page — reste la compression et un vrai passage meta/SEO. Pas commencé sérieusement.
 - [ ] Lighthouse : jamais lancé.
+- [ ] Balises de suivi statistique (Google Analytics ou équivalent) : pas encore ajoutées. Note : si on ajoute du tracking réel, ça implique en toute rigueur un bandeau de consentement cookies (RGPD) — même sur un site d'entraînement, ça fait partie de l'exercice si on veut le faire "proprement". À voir si on simule juste le tag ou si on pousse jusqu'au bandeau.
+- [ ] Open Graph personnalisé (`og:title`, `og:description`, `og:image`, `twitter:card`) par page : pas fait — actuellement aucune balise OG, donc un partage sur réseau social/WhatsApp n'afficherait ni image ni description. À tester ensuite avec un outil type LinkedIn Post Inspector une fois ajouté.
+- [ ] Favicon : absent (pas de `<link rel="icon">`, pas de fichier favicon). Petit détail mais visible immédiatement dans un onglet de navigateur.
+- [ ] `robots.txt` + `sitemap.xml` : absents. Pas bloquant pour un site d'entraînement non indexé, mais fait partie du SEO de base d'un vrai déploiement.
+- [ ] Page 404 personnalisée : absente (GitHub Pages affiche sa 404 générique).
 
 ## 9. Déploiement
 
 - [x] Hébergement : GitHub Pages en place et fonctionnel (après correction des chemins root-relative qui cassaient sous `/repo-name/`). `origin/main` est à jour avec la version publiée sauf les 4 derniers commits mobiles du 14/07, encore uniquement sur `origin/test`.
 - [ ] DNS / SSL : sans objet pour ce projet.
+- [ ] Mentions légales / politique de confidentialité : absentes. Sans objet pour un exercice perso, mais si on ajoute Analytics + formulaire de contact, un vrai site aurait besoin de ces pages (obligation légale en France dès qu'on collecte des données, même un simple formulaire).
 
 ## Où on en est (à jour au 13/07/2026, soir)
 
