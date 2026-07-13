@@ -54,6 +54,20 @@ git checkout test
 https://github.com/bastienrouger-cloud/Le-Cros-de-l-Oume-test-
 → menu déroulant en haut à gauche de la liste des fichiers → choisir `main` ou `test`.
 
+## Tester le site en local (obligatoire depuis l'étape JS)
+
+Ne pas ouvrir `index.html` en double-clic — ça ne marche plus depuis qu'on a le header/footer en partials chargés en JS (`fetch`) et des liens en chemins racine-relatifs (`/pages/...`, `/assets/...`).
+
+Dans le terminal, à la racine du projet :
+
+```
+python3 -m http.server 8000
+```
+
+Puis ouvrir http://localhost:8000 dans le navigateur. `Ctrl+C` dans le terminal pour arrêter le serveur.
+
+Pourquoi : le navigateur bloque `fetch()` sur des fichiers ouverts en `file://` (CORS), et les chemins commençant par `/` doivent être interprétés par rapport à la racine du projet — ce qui ne fonctionne que si un serveur sert les fichiers (même un mini serveur local comme celui-ci). C'est très exactement ce que fait un vrai serveur web en production (Apache, Nginx...), en version jouet sur ta machine, accessible seulement depuis `localhost`.
+
 ## Règle d'or
 
 `git pull` en arrivant, `git push` en partant. Sur chaque machine, à chaque session.
