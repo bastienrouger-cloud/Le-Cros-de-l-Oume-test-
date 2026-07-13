@@ -1,0 +1,347 @@
+/* ==========================================================================
+   Le Cros de l'Oume — style.css
+   Feuille de style commune à toutes les pages.
+   Mobile-first : les styles de base visent le mobile, les media queries
+   ajoutent/adaptent pour les écrans plus larges.
+   ========================================================================== */
+
+/* --- Variables ---------------------------------------------------------- */
+
+:root {
+  /* Couleurs */
+  --color-cream: #f7f2e9;
+  --color-cream-dark: #ede4d3;
+  --color-forest: #4a5d43;
+  --color-forest-dark: #384833;
+  --color-sage: #8a9a80;
+  --color-terracotta: #c17a56;
+  --color-terracotta-dark: #a8623f;
+  --color-charcoal: #2e2b26;
+  --color-white: #ffffff;
+
+  /* Rôles */
+  --color-bg: var(--color-cream);
+  --color-surface: var(--color-white);
+  --color-text: var(--color-charcoal);
+  --color-text-muted: #6b6558;
+  --color-accent: var(--color-terracotta);
+  --color-accent-dark: var(--color-terracotta-dark);
+  --color-border: var(--color-cream-dark);
+
+  /* Typo */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --radius: 10px;
+  --radius-lg: 16px;
+  --gap-sm: 0.5rem;
+  --gap-md: 1rem;
+  --gap-lg: 2rem;
+  --gap-xl: 3.5rem;
+  --container-max: 1180px;
+  --transition: 0.2s ease;
+}
+
+/* --- Reset / base -------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin: 0 0 var(--gap-md);
+  color: var(--color-forest-dark);
+}
+
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 var(--gap-md); }
+
+a {
+  color: var(--color-accent-dark);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gap-md);
+}
+
+/* --- Header / Nav --------------------------------------------------------
+   Mobile : tout à plat, empilé, y compris les sous-menus (pas de JS requis).
+   Desktop (min-width: 860px) : nav en ligne, sous-menus masqués et révélés
+   au survol.
+   -------------------------------------------------------------------------- */
+
+header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--gap-md);
+}
+
+header .logo a {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-forest-dark);
+  text-decoration: none;
+}
+
+nav ul {
+  margin-top: var(--gap-sm);
+}
+
+nav > ul > li {
+  border-top: 1px solid var(--color-border);
+}
+nav > ul > li:first-child {
+  border-top: none;
+}
+
+nav a {
+  display: block;
+  padding: 0.6rem 0.25rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+nav a:hover {
+  color: var(--color-accent-dark);
+  text-decoration: none;
+}
+
+/* sous-menus : à plat par défaut (mobile), simple indentation */
+nav .submenu {
+  padding-left: var(--gap-md);
+}
+nav .submenu a {
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.nav-toggle::after {
+  content: " ▾";
+  font-size: 0.75em;
+}
+
+@media (min-width: 860px) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--gap-md) var(--gap-lg);
+  }
+
+  nav ul {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-lg);
+  }
+
+  nav > ul > li {
+    border-top: none;
+    position: relative;
+  }
+
+  nav a {
+    padding: 0.4rem 0;
+  }
+
+  /* sous-menus masqués, révélés au survol, en position flottante */
+  nav .has-submenu .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--gap-sm) var(--gap-md);
+    min-width: 200px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+  }
+
+  nav .has-submenu:hover > .submenu,
+  nav .has-submenu:focus-within > .submenu {
+    display: block;
+  }
+
+  /* sous-sous-menu (élevage) : décalé à droite du parent */
+  nav .submenu .has-submenu .submenu {
+    top: 0;
+    left: 100%;
+  }
+}
+
+/* --- Hero ----------------------------------------------------------------- */
+
+.hero {
+  text-align: center;
+  padding: var(--gap-xl) var(--gap-md);
+  background: linear-gradient(var(--color-cream), var(--color-cream-dark));
+}
+
+.hero .tagline {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  max-width: 42ch;
+  margin: 0 auto var(--gap-lg);
+}
+
+.cta {
+  display: inline-block;
+  background: var(--color-forest);
+  color: var(--color-white);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  transition: background var(--transition);
+}
+.cta:hover {
+  background: var(--color-forest-dark);
+  text-decoration: none;
+}
+
+/* --- Carrousel -------------------------------------------------------------
+   Version simple, sans JS : scroll horizontal tactile natif.
+   Le JS (étape 6) ajoutera la navigation par flèches/points.
+   -------------------------------------------------------------------------- */
+
+.carrousel {
+  padding: var(--gap-lg) 0;
+}
+
+.carrousel-track {
+  display: flex;
+  gap: var(--gap-md);
+  overflow-x: auto;
+  padding: 0 var(--gap-md) var(--gap-sm);
+  scroll-snap-type: x mandatory;
+}
+
+.carrousel-track li {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+}
+
+.carrousel-track img {
+  border-radius: var(--radius-lg);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* --- Activités / cartes ---------------------------------------------------- */
+
+.activites {
+  padding: var(--gap-xl) var(--gap-md);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.activites h2 {
+  text-align: center;
+  margin-bottom: var(--gap-lg);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-lg);
+}
+
+@media (min-width: 640px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 980px) {
+  .cards-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+
+.card h3 {
+  margin: var(--gap-md) var(--gap-md) 0.25rem;
+}
+.card h3 a {
+  color: var(--color-forest-dark);
+}
+
+.card p {
+  margin: 0 var(--gap-md) var(--gap-md);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* --- Footer ----------------------------------------------------------------- */
+
+footer {
+  background: var(--color-forest-dark);
+  color: var(--color-cream);
+  padding: var(--gap-lg) var(--gap-md);
+  text-align: center;
+}
+
+footer a {
+  color: var(--color-cream);
+}
+
+footer .footer-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-lg);
+  margin: var(--gap-md) 0;
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  color: var(--color-sage);
+  margin-top: var(--gap-md);
+}
