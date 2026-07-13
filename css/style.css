@@ -677,6 +677,10 @@ body.lightbox-open {
   }
   .page-content > .carrousel ~ .page-content-text {
     flex: 1 1 0;
+    /* cadre invisible : evite que le texte touche le bord droit du
+       container, surtout sensible sur les grandes largeurs (container-max
+       eleve). */
+    padding-right: var(--gap-lg);
   }
 }
 
