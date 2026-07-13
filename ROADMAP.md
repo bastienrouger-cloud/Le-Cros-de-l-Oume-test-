@@ -88,4 +88,12 @@ Fix global (toutes pages) : fond de `<html>` aligne sur le vert du footer, pour 
 
 `projet-loungta.html` : nouvelle variante `.page-hero--tall` (min-height 80vh, flex centre) pour les pages ou le hero est le seul contenu — affiche l'illustration de fond sur toute sa hauteur au lieu de la bande courte des autres pages.
 
+`index.html` refondu (decide en fin de session du 13/07, apres essai compare sur `index-preview.html`) :
+- Section "Nos activités" passee du style `.cards-grid` au meme pattern `.showcase` que le hub elevage (photo pleine largeur, badge, degrade, lien "Découvrir"). Nouvelle variante `.showcase-grid--quad` (1 colonne mobile, 2x2 des que la place le permet, pas de palier "3 par ligne").
+- Carte "Projet Loungta" retiree de l'index (4 activites au lieu de 5) — la page reste accessible via le menu Activités, juste plus mise en avant sur l'accueil.
+- Carrousel deplace en dessous de la section activites (etait au dessus avant).
+- Le carrousel de l'index passe en variante "coverflow" (`.carrousel--coverflow`, scopee a cette seule instance) : photo active centree en pleine taille, precedente/suivante visibles en reduit de chaque cote et cliquables pour naviguer, fond creme au lieu du vert sauge standard. Positionnement via `transform: translateX() scale()` pilote par des custom properties (`--x-offset`/`--x-scale`) plutot que `order`, pour une transition glissee et non un saut instantane.
+- Bug corrige au passage (touchait potentiellement tout survol de carrousel, pas juste le coverflow) : le hover pause/reprise du carrousel ecoutait `mouseenter`/`mouseleave` sur `.carrousel-viewport`, qui ne detecte que sa boite geometrique. En coverflow, les vignettes prev/next debordent visuellement de cette boite (overflow visible), donc le survol n'etait pas detecte a certains endroits et le minuteur JS se desynchronisait de la barre de progression a la reprise. Remplace par `mouseover`/`mouseout` sur `.carrousel-track` avec verification de `relatedTarget` (bulle par arborescence DOM, pas par geometrie — fonctionne meme si une slide deborde visuellement).
+- `assets/images/index/card-projet-loungta.svg` n'est plus reference nulle part (carte retiree) — laisse en place pour l'instant, a nettoyer si on ne remet jamais cette carte.
+
 Prochaine étape concrète : `pages/elevage/chiens-protection.html` (sur le meme pattern que irish-cob.html), `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).
