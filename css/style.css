@@ -594,6 +594,92 @@ body.lightbox-open {
   font-size: 0.95rem;
 }
 
+/* --- Pages internes (activites, a-propos, contact...) ----------------------
+   Gabarit commun : bandeau de titre simple, bloc texte+image, cartes
+   d'infos pratiques, bloc d'appel a l'action. Reutilise sur chaque page
+   d'activite. -------------------------------------------------------------- */
+
+.page-hero {
+  text-align: center;
+  padding: var(--gap-xl) var(--gap-md) var(--gap-lg);
+  background-color: var(--color-sage-tint);
+}
+
+.page-hero .tagline {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 50ch;
+  margin: 0 auto;
+}
+
+.page-content {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--gap-xl) var(--gap-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+}
+
+.page-content-image img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+@media (min-width: 860px) {
+  .page-content {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-xl);
+  }
+  .page-content-text,
+  .page-content-image {
+    flex: 1 1 0;
+  }
+}
+
+.practical-info {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gap-md) var(--gap-xl);
+}
+
+.practical-info h2 {
+  text-align: center;
+  margin-bottom: var(--gap-lg);
+}
+
+.info-card {
+  flex: 1 1 180px;
+  max-width: 220px;
+  text-align: center;
+  padding: var(--gap-md);
+}
+
+.info-card h3 {
+  color: var(--color-accent-dark);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.info-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.page-cta {
+  text-align: center;
+  padding: var(--gap-xl) var(--gap-md);
+  background-color: var(--color-cream-dark);
+}
+
+.page-cta h2 {
+  margin-bottom: var(--gap-md);
+}
+
 /* --- Footer ----------------------------------------------------------------- */
 
 footer {
