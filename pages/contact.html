@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Le Cros de l'Oume</title>
+  <meta name="description" content="Contactez Le Cros de l'Oume pour réserver une visite de ferme, une balade à cheval, une séance de médiation équine, ou pour toute question sur notre élevage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <main>
+
+    <section class="page-hero page-hero--tall page-hero--photo">
+      <h1>Contact</h1>
+      <p class="tagline">Une question, une envie de réserver ? Écrivez-nous.</p>
+
+      <div class="contact-card">
+
+        <div class="contact-info">
+          <h2>Nous trouver</h2>
+          <p>Le Cros de l'Oume<br>Pays de Bourdeaux, Drôme</p>
+          <p><a href="mailto:contact@crosdeloume-exemple.fr">contact@crosdeloume-exemple.fr</a></p>
+          <p>06 12 34 56 78 (numéro d'exemple)</p>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+
+          <div class="form-field">
+            <label for="field-name">Nom</label>
+            <input type="text" id="field-name" name="name" required>
+          </div>
+
+          <div class="form-field">
+            <label for="field-email">Email</label>
+            <input type="email" id="field-email" name="email" required>
+          </div>
+
+          <div class="form-field">
+            <label for="field-subject">Vous êtes intéressé·e par</label>
+            <select id="field-subject" name="subject">
+              <option>Visite de ferme</option>
+              <option>Balade à cheval</option>
+              <option>Médiation équine</option>
+              <option>Élevage (chevaux ou chiens)</option>
+              <option>Autre</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="field-message">Message</label>
+            <textarea id="field-message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="cta">Envoyer</button>
+
+          <p class="form-note" id="form-success" hidden>Merci, votre message a bien été envoyé ! (Site d'entraînement — ceci est une simulation, aucun message n'est réellement transmis.)</p>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="/js/main.js" defer></script>
+  <script src="/js/contact-form.js" defer></script>
+</body>
+</html>

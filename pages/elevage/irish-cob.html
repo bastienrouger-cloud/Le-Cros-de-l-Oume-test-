@@ -26,8 +26,23 @@
     </section>
 
     <section class="page-content">
-      <div class="page-content-image">
-        <img src="/assets/images/pages/elevage/irish-cob/cheval-prairie.svg" alt="Cheval Irish Cob dans les prairies du Cros de l'Oume">
+      <div class="carrousel">
+        <div class="carrousel-viewport">
+          <button class="carrousel-prev" aria-label="Image précédente">&#10094;</button>
+          <ul class="carrousel-track">
+            <li><img src="/assets/images/pages/elevage/irish-cob/cheval-prairie.svg" alt="Cheval Irish Cob dans les prairies du Cros de l'Oume"></li>
+            <li><img src="/assets/images/pages/elevage/irish-cob/jument-pre.svg" alt="Jument Irish Cob au pré"></li>
+            <li><img src="/assets/images/pages/elevage/irish-cob/portrait-jument.svg" alt="Portrait d'une jument Irish Cob"></li>
+            <li><img src="/assets/images/pages/elevage/irish-cob/troupeau-juments.svg" alt="Troupeau de juments Irish Cob"></li>
+          </ul>
+          <button class="carrousel-next" aria-label="Image suivante">&#10095;</button>
+          <button class="carrousel-expand" aria-label="Agrandir la photo">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 3H3v6M15 3h6v6M15 21h6v-6M9 21H3v-6"/>
+            </svg>
+          </button>
+        </div>
+        <div class="carrousel-dots"></div>
       </div>
 
       <div class="page-content-text">
@@ -109,30 +124,168 @@
       </div>
     </section>
 
-    <section class="section-lead">
-      <h2>Nos juments</h2>
-      <p>Tout a commencé en 2014 avec une première jument gestante — le troupeau s'est agrandi depuis, mais chaque arrivée reste mûrement réfléchie : nos chevaux font partie de la famille, et restent au Cros de l'Oume à vie.</p>
-    </section>
+    <section class="team-grid" aria-label="Nos chevaux">
+      <h2>Nos chevaux</h2>
+      <div class="team-cards team-cards--cols-4">
 
-    <section class="carrousel" aria-label="Nos juments">
-      <div class="carrousel-viewport">
-        <button class="carrousel-prev" aria-label="Image précédente">&#10094;</button>
-        <ul class="carrousel-track">
-          <li><img src="/assets/images/pages/elevage/irish-cob/jument-pre.svg" alt="Jument Irish Cob au pré"></li>
-          <li><img src="/assets/images/pages/elevage/irish-cob/portrait-jument.svg" alt="Portrait d'une jument Irish Cob"></li>
-          <li><img src="/assets/images/pages/elevage/irish-cob/troupeau-juments.svg" alt="Troupeau de juments Irish Cob"></li>
-        </ul>
-        <button class="carrousel-next" aria-label="Image suivante">&#10095;</button>
-        <button class="carrousel-expand" aria-label="Agrandir la photo">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M9 3H3v6M15 3h6v6M15 21h6v-6M9 21H3v-6"/>
-          </svg>
+        <button type="button" class="team-card" data-modal-open="modal-sienna">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-sienna.svg" alt="Sienna Van den Berglandoe">
+          <span class="team-card-name">Sienna<small>2008</small></span>
         </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-eackna">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-eackna.svg" alt="Eackna de l'Oume">
+          <span class="team-card-name">Eackna<small>2014</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-fastoche">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-fastoche.svg" alt="Fastoche">
+          <span class="team-card-name">Fastoche<small>2015</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-sioux">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-sioux.svg" alt="Sue Ellen dite Sioux">
+          <span class="team-card-name">Sioux<small>2013</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-inca">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-inca.svg" alt="Inca du Rêve Nomade">
+          <span class="team-card-name">Inca<small>2018</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-enoha">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-enoha.svg" alt="Enoha Tan">
+          <span class="team-card-name">Enoha<small>2018</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-mystic">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-mystic.svg" alt="Mystic Dream de l'Oume">
+          <span class="team-card-name">Mystic<small>2022</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-mai-tai">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-mai-tai.svg" alt="Maï Taï de l'Oume">
+          <span class="team-card-name">Maï Taï<small>2022</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-indiana">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-indiana.svg" alt="Indiana du Val d'Anguienne">
+          <span class="team-card-name">Indiana<small>2018</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-omage">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-omage.svg" alt="Omage de l'Oume">
+          <span class="team-card-name">Omage<small>2024</small></span>
+        </button>
+
+        <button type="button" class="team-card" data-modal-open="modal-gold">
+          <img src="/assets/images/pages/elevage/irish-cob/cheval-gold.svg" alt="Oh My Gold du Prieuré">
+          <span class="team-card-name">Gold<small>2024</small></span>
+        </button>
+
       </div>
-      <div class="carrousel-dots"></div>
     </section>
 
   </main>
+
+  <div class="modal" id="modal-sienna" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-sienna-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-sienna.svg" alt="Sienna Van den Berglandoe">
+      <h3 id="modal-sienna-title">Sienna Van den Berglandoe (2008)</h3>
+      <p>Notre toute première jument, arrivée à la création de l'élevage. Fille du célèbre étalon Zippo, c'est une dominante douce qui veille sur tout le troupeau — poulains comme humains.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-eackna" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-eackna-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-eackna.svg" alt="Eackna de l'Oume">
+      <h3 id="modal-eackna-title">Eackna de l'Oume (2014)</h3>
+      <p>La toute première pouliche née au Cros de l'Oume. Croisée Irish Cob et Frison — on parle de "Gypsian" — et fille de Sienna, elle a un tempérament à la fois vif et tout en douceur.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-fastoche" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-fastoche-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-fastoche.svg" alt="Fastoche">
+      <h3 id="modal-fastoche-title">Fastoche (2015)</h3>
+      <p>Arrivée en 2016, c'est une jument câline et généreuse, aux allures particulièrement élégantes. Elle est à l'aise aussi bien montée qu'en séance de médiation.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-sioux" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-sioux-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-sioux.svg" alt="Sue Ellen dite Sioux">
+      <h3 id="modal-sioux-title">Sue Ellen, dite Sioux (2013)</h3>
+      <p>Jument pie baie arrivée en 2019, puissante mais d'une grande douceur. Dominante bienveillante envers son troupeau, c'est notre référence pour les randonnées comme pour la médiation.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-inca" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-inca-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-inca.svg" alt="Inca du Rêve Nomade">
+      <h3 id="modal-inca-title">Inca du Rêve Nomade (2018)</h3>
+      <p>Étalon — aujourd'hui hongre — au tempérament très posé et attachant. Il accompagne aussi bien les balades que les séances de médiation équine.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-enoha" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-enoha-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-enoha.svg" alt="Enoha Tan">
+      <h3 id="modal-enoha-title">Enoha Tan (2018)</h3>
+      <p>Petite jument arrivée en 2021, d'une grande douceur. Elle est particulièrement investie en médiation auprès des femmes, et parfaite pour accompagner les enfants en balade.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mystic" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-mystic-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-mystic.svg" alt="Mystic Dream de l'Oume">
+      <h3 id="modal-mystic-title">Mystic Dream de l'Oume (2022)</h3>
+      <p>Fille d'Inca et de Sioux, cette pouliche grandit tranquillement au Cros de l'Oume. Déjà très ancrée, elle montre un vrai don pour la médiation équine.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mai-tai" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-mai-tai-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-mai-tai.svg" alt="Maï Taï de l'Oume">
+      <h3 id="modal-mai-tai-title">Maï Taï de l'Oume (2022)</h3>
+      <p>Fille de Sienna et d'Inca, c'est une jument d'une tendresse remarquable — elle a impressionné très jeune par ses qualités en médiation.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-indiana" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-indiana-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-indiana.svg" alt="Indiana du Val d'Anguienne">
+      <h3 id="modal-indiana-title">Indiana du Val d'Anguienne (2018)</h3>
+      <p>Grande jument à la robe smoky black, arrivée en 2023. Très sensible et proche de l'homme, elle intervient en médiation et accompagnera bientôt les balades.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-omage" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-omage-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-omage.svg" alt="Omage de l'Oume">
+      <h3 id="modal-omage-title">Omage de l'Oume (2024)</h3>
+      <p>Pouliche pie palomino née à la ferme, fille de Sienna. Un joli caractère de princesse, qui grandit tranquillement au Cros de l'Oume.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-gold" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-gold-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <img src="/assets/images/pages/elevage/irish-cob/cheval-gold.svg" alt="Oh My Gold du Prieuré">
+      <h3 id="modal-gold-title">Oh My Gold du Prieuré (2024)</h3>
+      <p>Le petit dernier, arrivé en 2025 pour devenir futur reproducteur. Issu de belles lignées, il a déjà un caractère adorable — sans doute l'un des chevaux les plus gentils de la ferme.</p>
+    </div>
+  </div>
 
   <div class="sticky-cta" id="sticky-cta">
     <p class="sticky-cta-text">Un poulain vous intéresse ?</p>
@@ -145,5 +298,6 @@
   <script src="/js/carrousel.js" defer></script>
   <script src="/js/accordion.js" defer></script>
   <script src="/js/sticky-cta.js" defer></script>
+  <script src="/js/team-modal.js" defer></script>
 </body>
 </html>

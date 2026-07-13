@@ -97,3 +97,44 @@ Fix global (toutes pages) : fond de `<html>` aligne sur le vert du footer, pour 
 - `assets/images/index/card-projet-loungta.svg` n'est plus reference nulle part (carte retiree) — laisse en place pour l'instant, a nettoyer si on ne remet jamais cette carte.
 
 Prochaine étape concrète : `pages/elevage/chiens-protection.html` (sur le meme pattern que irish-cob.html), `pages/a-propos.html`, `pages/contact.html` (avec vrai formulaire).
+
+## Session du 13/07/2026 (nuit) — simplification irish-cob + cartes equipe + creation chiens-protection
+
+Bug corrige au passage sur toutes les pages : `highlightActiveNav()` (js/main.js) surlignait "Activités" en plus de "Accueil" sur l'index, car le lien parent (`href="#"`, simple bouton pour deplier le sous-menu) etait resolu par erreur vers `/index.html` lors de la comparaison d'URL. Fix : on ignore desormais les liens `href="#"` dans la boucle de comparaison.
+
+`pages/elevage/irish-cob.html` simplifie : l'image fixe de la section d'intro est remplacee par un carrousel (cheval-prairie + les 3 photos ex-"Nos juments"), et la section "Nos juments" du bas (titre/texte + carrousel dédié) est supprimee — les images ont ete recuperees dans le nouveau carrousel du haut, le texte de cette section (l'historique du troupeau depuis 2014) a ete retire, a recuperer ailleurs si besoin un jour.
+
+Nouveau composant "cartes equipe + modale" (`.team-grid`/`.team-card`/`.modal` dans style.css, `js/team-modal.js`) : grille de cartes photo+nom, le clic ouvre une modale avec la bio complete. Objectif : presenter beaucoup d'individus (chevaux, chiens) sans alourdir la page d'un bloc de texte par individu. Concept redemande a Bastien en session (l'original avait ete fait sur l'index puis retire, mais jamais commite — introuvable dans l'historique git).
+
+Contenu de `irish-cob.html` (section "Nos chevaux", 11 cartes) et de la nouvelle page `pages/elevage/chiens-protection.html` (section "Nos chiens", 5 cartes) inspire de la vraie page crosdeloume.com/à-propos-de-nous (recuperee via Claude in Chrome, le fetch direct de l'URL etant bloque côté outil) : reformule, pas copie.
+
+`pages/elevage/chiens-protection.html` cree en entier sur le pattern irish-cob.html : hero + CTA flottant ("Un chiot vous intéresse ?"), intro carrousel + texte (race Cão de Gado Transmontano, contexte loup), accordeon "Notre selection" (4 items : race, instinct equin, vie en meute, portees reflechies), grille de 5 cartes chiens (Peace'tole, Toltek, Princessa, Uraïï, Vik).
+
+Nouveaux placeholders SVG generes (meme style que les existants, cadre + forme abstraite) : 11 pour les chevaux (`assets/images/pages/elevage/irish-cob/cheval-*.svg`), 5 pour les chiens + 3 pour l'intro de `chiens-protection.html` (`assets/images/pages/elevage/chiens-protection/`).
+
+**Point d'attention pour la prochaine session** : le mount Linux utilise par l'assistant (bash) a affiche un cache perime pour `style.css` et `irish-cob.html` apres leurs modifications (contenu vu par `git status`/`cat` different de la version reelle vue par les outils de fichiers) — les fichiers reels sont corrects (verifies un par un), mais `git status`/`git add`/`git commit` lances depuis l'outil bash de l'assistant dans cette session ne voyaient pas ces changements. A verifier/committer depuis un terminal local (ou une session fraiche) plutot que de faire confiance au bash de l'assistant pour ce commit.
+
+Reste a faire pour l'à-propos : le contenu reel de Lulu a ete recupere (voir notes de session), mais la reorganisation de `pages/a-propos.html` elle-meme n'est pas commencee — equipe humaine (Ludivine, Margot) a garder sur cette page, equipe chevaux/chiens deplacee vers les pages elevage (fait cette session).
+
+## Session du 13/07/2026 (suite) — ajustements cartes equipe + CTA mobile + contact
+
+`.team-cards` passee de grid a flexbox (`display:flex; flex-wrap:wrap; justify-content:center`) : une derniere ligne incomplete (ex. 1 carte seule sur 11 chevaux) se centre maintenant au lieu de rester collee a gauche/etiree (`flex: 0 1 X%` — grow a 0 pour que la carte isolee garde la meme taille que les autres). Paliers par defaut : 2 cartes/ligne (mobile) -> 3 (480px) -> 4 (640px) -> 5 (860px). Nouvelle classe modificatrice `.team-cards--cols-4` (utilisee sur `irish-cob.html` uniquement) qui plafonne a 4 par ligne meme en grand ecran — la page chiens (5 cartes) reste au palier par defaut (5).
+
+`.team-card` transforme en vrai conteneur de carte (fond blanc, `border-radius`, ombre, effet de survol `translateY`) plutot qu'une image+legende flottantes.
+
+CTA flottant (pattern `#hero-cta-anchor` / `#sticky-cta` / `js/sticky-cta.js`, déjà en place sur les pages élevage) étendu aux trois pages d'activité restantes : `visite-ferme.html`, `balade-cheval.html`, `mediation-equine.html` — texte du bandeau adapté à chaque page ("Envie de visiter la ferme ?", "Envie d'une balade ?", "Envie d'une séance ?").
+
+`pages/contact.html` créée : formulaire de façade (nom, email, sujet en select, message) — site d'entraînement, aucun envoi réel. Nouveau `js/contact-form.js` : au submit, `preventDefault()`, désactive tous les champs, affiche un message de confirmation simulé. Nouveau bloc CSS `.contact-section`/`.contact-form`/`.form-field` (colonne info + formulaire, empilés en mobile, côte à côte dès 860px).
+
+Prochaine étape : `pages/a-propos.html` — reste le seul morceau non traité. Contenu réel de Lulu déjà récupéré cette session (voir plus haut) : équipe chevaux/chiens déjà déplacée vers les pages élevage, donc à-propos doit garder qui-sommes-nous (Ludivine + Margot), nos valeurs, et la partie biodiversité/coexistence avec le loup — à restructurer pour ne pas répéter ce qui est déjà couvert ailleurs (élevage, activités).
+
+## Session du 13/07/2026 (fin) — pages/a-propos.html (premier jet + itérations) et pages/contact.html finalisée
+
+`pages/contact.html` créée puis retravaillée : hero plein ecran (`.page-hero--tall .page-hero--photo`, nouvelle variante avec l'image bien visible — degrade sombre leger au lieu du degrade creme quasi opaque du `.page-hero` standard, texte en blanc) et encart `.contact-card` (fond blanc semi-transparent flouté + ombre) qui porte coordonnées + formulaire, flottant sur la photo. Footer retiré sur cette page uniquement (`#footer-placeholder` simplement absent du HTML, `main.js` ne fait rien si l'élément n'existe pas). Formulaire de façade : `js/contact-form.js` bloque le submit reel, désactive les champs, affiche un message de confirmation simulé — site d'entraînement, aucun envoi reel.
+
+`pages/a-propos.html` créée en plusieurs passes :
+- Premier jet : hero, `.page-intro`, "Qui sommes-nous" (texte+image, Ludivine + Margot), accordéon "Nos valeurs" (4 items), `.section-lead` "Biodiversité et coexistence" (lien vers chiens-protection), `.page-cta` final.
+- Ajout section "Notre équipe" : portraits ronds (nouveau composant `.team-portraits`/`.team-portrait`/`.team-portrait-circle`/`.team-portrait-overlay` dans style.css, nouveau `js/team-portrait.js`) — description en overlay au survol/focus clavier (CSS pur `:hover`/`:focus-visible`), et au tap sur mobile via la classe `.is-active` basculee en JS (pas de vrai `:hover` sur tactile). Nouveaux placeholders `assets/images/pages/a-propos/humain-ludivine.svg` et `humain-margot.svg`.
+- Refonte de "Nos valeurs" : l'accordéon 4 items + le bloc `.section-lead` biodiversité sont remplacés par 3 cartes `.team-card` (reutilisation du composant deja construit pour chevaux/chiens) → 3 modales ("Nos valeurs", "Connexion et harmonie", "Gestion de la biodiversité"), inspirees de la structure reelle du site de Lulu (qui a ces 3 blocs distincts avec liens "en savoir plus"). La modale biodiversité contient le lien vers `pages/elevage/chiens-protection.html` (recupere depuis l'ancien `.section-lead`, qui n'existe donc plus sur cette page). Nouveaux placeholders `valeur-bienetre.svg` (coeur), `valeur-connexion.svg` (spirale), `valeur-biodiversite.svg` (feuille). Script `js/accordion.js` retire de la page (plus aucun accordéon dessus), remplace par `js/team-modal.js`.
+
+Le site est maintenant complet : accueil, 4 pages d'activité (visite-ferme, balade-cheval, mediation-equine — CTA flottant ajoute sur ces 3 cette session —, projet-loungta resté sur `test`), elevage (hub + irish-cob + chiens-protection), a-propos, contact. Reste a faire, si Bastien veut continuer : verifier/committer les changements (voir avertissement cache bash plus haut), tester sur mobile reel, passe SEO/perf de base (section 7-8 de ROADMAP, toujours pas cochees).

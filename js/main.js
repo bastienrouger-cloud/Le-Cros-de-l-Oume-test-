@@ -41,9 +41,12 @@ function highlightActiveNav() {
   const currentPath = normalizeNavPath(window.location.pathname);
 
   document.querySelectorAll('nav a[href]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (href === '#') return; // simple bouton qui deplie le sous-menu, pas une vraie page
+
     let linkPath;
     try {
-      linkPath = normalizeNavPath(new URL(link.getAttribute('href'), window.location.origin).pathname);
+      linkPath = normalizeNavPath(new URL(href, window.location.origin).pathname);
     } catch (err) {
       return;
     }

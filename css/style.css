@@ -1165,3 +1165,362 @@ footer .footer-nav ul {
   color: var(--color-sage);
   margin-top: var(--gap-md);
 }
+
+/* --- Portraits d'equipe (Ludivine, Margot) --------------------------------- */
+/* Portrait rond, nom en dessous. Au survol/focus clavier (desktop) ou au tap
+   (mobile, via .is-active pilotee par js/team-portrait.js), un bandeau
+   semi-transparent recouvre la photo avec une courte description. */
+
+.team-portraits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-xl);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gap-md) var(--gap-xl);
+}
+
+.team-portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-sm);
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.team-portrait-circle {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.team-portrait-circle img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-portrait-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(46, 43, 38, 0.85);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-md);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.team-portrait-overlay p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.team-portrait:hover .team-portrait-overlay,
+.team-portrait:focus-visible .team-portrait-overlay,
+.team-portrait.is-active .team-portrait-overlay {
+  opacity: 1;
+}
+
+.team-portrait-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-forest-dark);
+}
+
+/* --- Formulaire de contact ------------------------------------------------ */
+/* Site d'entrainement : aucun envoi reel, juste une simulation en JS
+   (voir js/contact-form.js) — le formulaire n'est raccorde a rien. */
+
+.contact-section {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--gap-xl) var(--gap-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xl);
+}
+
+.contact-info p {
+  margin: 0 0 var(--gap-sm);
+}
+
+.contact-info a {
+  font-weight: 700;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  max-width: 560px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.85rem;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 1px;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.contact-form button.cta {
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  font: inherit;
+}
+
+.contact-form button.cta:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.form-note {
+  color: var(--color-forest-dark);
+  font-weight: 600;
+}
+
+@media (min-width: 860px) {
+  .contact-section {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .contact-info,
+  .contact-form {
+    flex: 1 1 0;
+  }
+}
+
+/* Variante "page-hero--photo" : contrairement au .page-hero standard (image
+   quasi masquee sous un degrade creme tres opaque), ici la photo reste bien
+   visible — degrade sombre leger, juste ce qu'il faut pour la lisibilite du
+   texte blanc par-dessus. Reservee a contact.html pour l'instant (hero plein
+   ecran, sans section separee en dessous). */
+.page-hero--photo {
+  background-image:
+    linear-gradient(rgba(30, 28, 24, 0.35), rgba(30, 28, 24, 0.55)),
+    url('/assets/images/herobackground.jpg');
+  background-size: cover;
+  background-position: center 30%;
+}
+
+.page-hero--photo h1,
+.page-hero--photo .tagline {
+  color: var(--color-white);
+}
+
+/* Encart semi-transparent qui porte les coordonnees + le formulaire,
+   "decroche" de la photo par son fond clair flouté et son ombre portee. */
+.contact-card {
+  margin-top: var(--gap-xl);
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  padding: var(--gap-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+  text-align: left;
+}
+
+@media (min-width: 860px) {
+  .contact-card {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: var(--gap-xl);
+  }
+  .contact-card .contact-info,
+  .contact-card .contact-form {
+    flex: 1 1 0;
+  }
+}
+
+/* --- Equipe (cartes + modale) ------------------------------------------- */
+/* Grille de "cartes equipe" (chevaux, chiens) : au repos, chaque carte
+   n'affiche que la photo et le nom. Le detail (bio complete) s'ouvre au
+   clic dans une modale — permet de presenter beaucoup d'individus sans
+   alourdir la page d'un bloc de texte pour chacun. */
+
+.team-grid {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--gap-xl) var(--gap-md);
+}
+
+.team-grid h2 {
+  text-align: center;
+  margin-bottom: var(--gap-lg);
+}
+
+/* Paliers explicites : 2 cartes par ligne minimum (mobile), 5 maximum
+   (grand ecran). Flexbox plutot que grid + justify-content: center pour
+   que la derniere ligne incomplete (ex. 1 carte seule sur 11) se centre
+   au lieu de rester collee a gauche — flex-grow: 0 pour que cette carte
+   isolee garde la meme taille que les autres au lieu de s'etirer. */
+.team-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-md);
+}
+
+.team-card {
+  flex: 0 1 calc(50% - var(--gap-md) / 2);
+}
+@media (min-width: 480px) {
+  .team-card { flex-basis: calc(33.333% - (var(--gap-md) * 2 / 3)); }
+}
+@media (min-width: 640px) {
+  .team-card { flex-basis: calc(25% - (var(--gap-md) * 3 / 4)); }
+}
+@media (min-width: 860px) {
+  .team-card { flex-basis: calc(20% - (var(--gap-md) * 4 / 5)); }
+}
+
+/* Variante : plafonne a 4 cartes par ligne au lieu de 5 (page chevaux,
+   11 cartes — 5 par ligne faisait des lignes trop chargees). Le palier
+   640px (25%, 4 par ligne) reste simplement inchange au-dela. */
+@media (min-width: 860px) {
+  .team-cards--cols-4 .team-card { flex-basis: calc(25% - (var(--gap-md) * 3 / 4)); }
+}
+
+/* Vrai conteneur de carte (meme registre que .card, inutilisee ailleurs
+   depuis le passage au pattern showcase) : fond, coins arrondis, ombre —
+   pour que la photo+nom se lise comme une fiche, pas juste une image
+   flottante avec une legende. */
+.team-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.team-card:hover,
+.team-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.team-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.team-card-name {
+  padding: var(--gap-sm);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.team-card-name small {
+  display: block;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+/* Modale : meme registre visuel que la lightbox (fond sombre plein ecran,
+   meme z-index), mais un panneau creme a lire plutot qu'une simple image. */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-md);
+  z-index: 1000;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-panel {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--gap-lg);
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.modal-panel img {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: var(--gap-md);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--gap-sm);
+  right: var(--gap-sm);
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: var(--gap-sm);
+}
+.modal-close:hover {
+  color: var(--color-accent-dark);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
