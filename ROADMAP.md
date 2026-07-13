@@ -50,7 +50,7 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 
 - [ ] Formulaire de contact (pas encore décidé si Formspree, Netlify Forms, ou autre — projet d'entraînement donc pas d'enjeu réel de destinataire). À faire avec `pages/contact.html`.
 - [x] Menu mobile — hamburger sous 860px, branché en JS (`initMobileNav`).
-- [ ] Carrousel d'images statique en JS : scroll horizontal natif fait, flèches/points de navigation pas encore ajoutés.
+- [x] Carrousel d'images statique en JS : cadre fixe, une photo a la fois, fleches, defilement auto (pause au survol du cadre), points de navigation (barre de progression synchronisee), lightbox plein ecran, bouton agrandir.
 
 ## 7. Responsive + tests
 
@@ -69,6 +69,6 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 
 ## Où on en est (à jour au 13/07/2026, soir)
 
-Étapes 1 à 5 posées pour `index.html`. Étape 6 en partie faite (partials + menu mobile), reste : navigation carrousel et formulaire contact (lié à `pages/contact.html`, pas encore créée).
+`index.html` est considere comme boucle : structure, style, header/footer en partials, menu mobile, carrousel complet, hero personnalise (embleme + illustration de fond). Reste ouvert pour plus tard : formulaire de contact (lie a `pages/contact.html`, pas encore creee), et une nouvelle passe sur le PNG de l'embleme (cercle exterieur pas parfaitement rond).
 
-Prochaine étape concrète : passer aux pages types — dupliquer le squelette de `index.html` (header/footer/style déjà externalisés, donc léger à dupliquer) pour créer la première page d'activité, ex. `pages/visite-ferme.html`, et valider le pattern avant de répliquer sur les autres.
+Prochaine étape concrète : pages types — dupliquer le squelette de `index.html` (header/footer/style déjà externalisés, donc léger à dupliquer) pour créer `pages/visite-ferme.html`, valider le pattern avant de répliquer sur les autres.
