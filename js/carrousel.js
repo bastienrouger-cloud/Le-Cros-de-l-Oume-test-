@@ -146,7 +146,12 @@
     startAutoplay();
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  // On attend que main.js ait fini d'injecter le header/footer (événement
+  // "partials:ready") avant de démarrer l'autoplay et le survol du carrousel.
+  // Sinon l'apparition du header juste après le chargement décale toute la
+  // mise en page pendant que la souris ne bouge pas, ce qui déclenche des
+  // mouseenter/mouseleave parasites → l'autoplay se bloque/débloque en boucle.
+  document.addEventListener('partials:ready', () => {
     document.querySelectorAll('.carrousel').forEach(initCarrousel);
   });
 })();

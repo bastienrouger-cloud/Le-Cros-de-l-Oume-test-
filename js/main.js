@@ -32,6 +32,10 @@ async function init() {
   await includePartial('#header-placeholder', '/partials/header.html');
   await includePartial('#footer-placeholder', '/partials/footer.html');
   initMobileNav();
+  // signale aux autres scripts (carrousel.js) que la mise en page est stable :
+  // header/footer injectés = plus de décalage de layout à attendre avant de
+  // démarrer des comportements sensibles au survol (autoplay du carrousel).
+  document.dispatchEvent(new CustomEvent('partials:ready'));
 }
 
 document.addEventListener('DOMContentLoaded', init);
