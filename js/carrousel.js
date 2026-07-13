@@ -25,16 +25,40 @@
     let remainingTime = AUTOPLAY_DELAY;
     let slideStartedAt = null;
 
+    // distance circulaire entre l'item i2 et la slide active (0 = active,
+    // -1 = juste avant, 1 = juste apres, etc. — gere plus de 3 items au cas ou).
+    function relativeOffset(i2) {
+      const len = items.length;
+      let diff = i2 - index;
+      if (diff > len / 2) diff -= len;
+      if (diff < -len / 2) diff += len;
+      return diff;
+    }
+
+    // en mode coverflow, decale/reduit chaque slide en fonction de sa distance
+    // a l'active via des custom properties (--x-offset/--x-scale) lues par le
+    // CSS — un vrai transform anime en continu, pas un changement de `order`
+    // (qui saute d'un coup, sans transition possible).
+    const COVERFLOW_BASE_OFFSET = 70; // % de la largeur d'une slide
+    const COVERFLOW_STEP = 25;
+
     function updatePositionClasses() {
       items.forEach((li, i2) => {
         li.classList.remove('is-active', 'is-prev', 'is-next');
-        if (i2 === index) {
-          li.classList.add('is-active');
-        } else if (i2 === (index - 1 + items.length) % items.length) {
-          li.classList.add('is-prev');
-        } else if (i2 === (index + 1) % items.length) {
-          li.classList.add('is-next');
-        }
+        const offset = relativeOffset(i2);
+        if (offset === 0) li.classList.add('is-active');
+        else if (offset === -1) li.classList.add('is-prev');
+        else if (offset === 1) li.classList.add('is-next');
+
+        if (!isCoverflow) return;
+
+        const abs = Math.abs(offset);
+        const distance = abs === 0 ? 0 : COVERFLOW_BASE_OFFSET + (abs - 1) * COVERFLOW_STEP;
+        const sign = offset < 0 ? -1 : 1;
+        li.style.setProperty('--x-offset', `${sign * distance}%`);
+        li.style.setProperty('--x-scale', String(Math.max(0.55, 1 - abs * 0.22)));
+        li.style.opacity = abs === 0 ? '1' : abs === 1 ? '0.5' : '0';
+        li.style.pointerEvents = abs <= 1 ? 'auto' : 'none';
       });
     }
 
