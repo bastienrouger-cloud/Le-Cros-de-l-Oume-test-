@@ -299,9 +299,9 @@ nav .submenu a {
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.12) 42%,
-    rgba(74, 93, 67, 0.04) 55%,
-    rgba(46, 43, 38, 0.22) 100%
+    rgba(255, 255, 255, 0.12) 40%,
+    rgba(74, 93, 67, 0.05) 52%,
+    rgba(46, 43, 38, 0.5) 100%
   );
   filter: blur(60px);
   z-index: 0;
