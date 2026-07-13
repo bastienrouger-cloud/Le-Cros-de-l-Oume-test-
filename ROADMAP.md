@@ -74,7 +74,7 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 
 Pattern "page type" valide sur `pages/visite-ferme.html` : hero, carrousel (2/3) + texte (1/3) avec horaire/tarif distingues et bouton contact centre, section video (placeholder), FAQ en accordeon (multi-ouvert, largeur 1400px). Nav "active" ajoutee en prime (header + footer, y compris le parent "Activités" quand une sous-page est active).
 
-`pages/balade-cheval.html` et `pages/mediation-equine.html` crees sur ce meme pattern, contenu inspire (reformule, pas copie) du vrai site de Ludivine. Photos encore en placeholder.svg partout.
+`pages/balade-cheval.html` et `pages/mediation-equine.html` crees sur ce meme pattern, contenu inspire (reformule, pas copie) du vrai site de Ludivine. Photos encore en placeholder — mais depuis le 13/07 chaque `<img>` a son propre fichier SVG unique, range dans une arborescence `assets/images/` qui reproduit celle de `pages/` (ex. `assets/images/pages/visite-ferme/visite-famille.svg`), comme si c'etaient de vraies photos. Le vieux `assets/images/placeholder.svg` partage a ete supprime, plus aucune reference dessus.
 
 `pages/elevage/index.html` cree : hub avec 2 grandes cartes pleine image (section `.showcase`), inspire de la section "Our Games" du site de Star Citizen (badge, degrade sombre, texte en bas). Pointe vers `irish-cob.html` et `chiens-protection.html`, pas encore crees.
 
