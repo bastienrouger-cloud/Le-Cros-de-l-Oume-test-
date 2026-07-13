@@ -154,6 +154,16 @@ Bug signale par Bastien : https://bastienrouger-cloud.github.io/Le-Cros-de-l-Oum
 
 **A faire par Bastien** : recommiter/pusher (meme procedure GitHub Desktop que la session precedente : commit sur `test`, push, passer sur `main`, merge `test` dedans, push), puis recharger l'URL GitHub Pages pour confirmer que c'est corrige.
 
+**Suite, meme session** : pendant que Bastien pushait, bug signale sur les hubs `.showcase-grid` (2 grandes cartes pleine image — hub elevage et section "Nos activites" de l'index) : les cartes disparaissaient au lieu de passer en 1 colonne sur petit ecran.
+
+Cause (confirmee en isolant chaque propriete CSS via injection JS, la fenetre du navigateur de la session ne se laissant pas redimensionner pour tester un vrai viewport mobile) : `.showcase-card` avait `flex: 1 1 0` (ou `1 1 100%` pour la variante quad), or en `flex-direction: column` (mode empile, mobile) avec un conteneur `.showcase-grid` de hauteur non definie, un flex-basis numerique (0 ou %) fait retomber la hauteur de la carte a 0 au lieu de la laisser se dimensionner via son `aspect-ratio: 4/3` — elle devient invisible. Deuxieme piege specifique a la variante `--quad` (index) : `flex-wrap: wrap` actif alors qu'on est encore en colonne empeche aussi l'aspect-ratio de s'appliquer (meme en `flex-basis: auto`), independamment du probleme precedent.
+
+Fix dans `style.css` : `flex-basis: auto` (pas `0`/`100%`) tant qu'on est empile (mobile), le `flex: 1 1 0` original desormais reserve au mode ligne (`@media (min-width: 760px)` pour `.showcase-grid`, `@media (min-width: 640px)` pour `--quad`) ; et pour `--quad`, `flex-wrap: nowrap` par defaut, `wrap` deplace dans le meme media query que le passage en ligne (`flex-direction: row`). Verifie par mesure directe des dimensions des cartes via JS (hauteur 0 avant fix, hauteur correcte = largeur × 3/4 apres) plutot que visuellement, faute de pouvoir reduire la fenetre de test. Aucune regression sur le rendu desktop (verifie par capture d'ecran).
+
+## Fin de session — suite prevue sur le Mac
+
+Bastien a pushe et bascule sur son Mac pour la suite (des soucis d'affichage mobile a regler — pas encore diagnostiques, a explorer sur l'autre machine). Reflexe standard en arrivant : `git checkout test` puis `git pull` (voir WORKFLOW.md). Etat du repo a ce stade : `test` et `main` synchronises (site complet, fix GitHub Pages + fix showcase-grid inclus), a confirmer via `git log`/`git status` sur les deux branches au demarrage de la prochaine session.
+
 ## Session du 13/07/2026 (fin) — pages/a-propos.html (premier jet + itérations) et pages/contact.html finalisée
 
 `pages/contact.html` créée puis retravaillée : hero plein ecran (`.page-hero--tall .page-hero--photo`, nouvelle variante avec l'image bien visible — degrade sombre leger au lieu du degrade creme quasi opaque du `.page-hero` standard, texte en blanc) et encart `.contact-card` (fond blanc semi-transparent flouté + ombre) qui porte coordonnées + formulaire, flottant sur la photo. Footer retiré sur cette page uniquement (`#footer-placeholder` simplement absent du HTML, `main.js` ne fait rien si l'élément n'existe pas). Formulaire de façade : `js/contact-form.js` bloque le submit reel, désactive les champs, affiche un message de confirmation simulé — site d'entraînement, aucun envoi reel.
