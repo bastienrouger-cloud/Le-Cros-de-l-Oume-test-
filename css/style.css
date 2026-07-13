@@ -425,6 +425,74 @@ nav .submenu a.active {
   display: block;
 }
 
+/* --- Carrousel : variante "coverflow" (essai, scope a un carrousel en
+   particulier via cette classe en plus de .carrousel) -----------------------
+   La slide active reste centree en pleine taille ; la precedente et la
+   suivante restent visibles en reduit de chaque cote, cliquables pour
+   naviguer — un peu comme une "roue 3D a plat". Le track ne glisse plus
+   via transform (voir carrousel.js) : on rejoue juste l'ordre visuel avec
+   `order`, pilote par les memes classes .is-prev/.is-active/.is-next. --- */
+
+.carrousel--coverflow .carrousel-viewport {
+  max-width: 1100px;
+  aspect-ratio: auto;
+  height: 300px;
+  overflow: visible;
+  border-radius: 0;
+}
+
+@media (min-width: 640px) {
+  .carrousel--coverflow .carrousel-viewport {
+    height: 420px;
+  }
+}
+
+.carrousel--coverflow .carrousel-track {
+  align-items: center;
+  justify-content: center;
+  transform: none !important;
+  gap: 0;
+}
+
+.carrousel--coverflow .carrousel-track li {
+  flex: 0 0 62%;
+  width: 62%;
+  height: 82%;
+  transition: transform var(--transition), opacity var(--transition), margin var(--transition), height var(--transition);
+  opacity: 0.5;
+  transform: scale(0.78);
+  z-index: 1;
+}
+
+.carrousel--coverflow .carrousel-track li.is-prev,
+.carrousel--coverflow .carrousel-track li.is-next {
+  cursor: pointer;
+}
+
+.carrousel--coverflow .carrousel-track li.is-prev {
+  order: -1;
+  margin-right: -18%;
+}
+
+.carrousel--coverflow .carrousel-track li.is-next {
+  order: 1;
+  margin-left: -18%;
+}
+
+.carrousel--coverflow .carrousel-track li.is-active {
+  order: 0;
+  height: 100%;
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+  cursor: default;
+}
+
+.carrousel--coverflow .carrousel-track img {
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px rgba(46, 43, 38, 0.18);
+}
+
 .carrousel-prev,
 .carrousel-next {
   position: absolute;

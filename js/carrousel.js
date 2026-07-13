@@ -15,14 +15,35 @@
     const dotsContainer = root.querySelector('.carrousel-dots');
     if (!track || items.length === 0) return;
 
+    // variante "coverflow" (essai) : slide active centree, precedente et
+    // suivante visibles en reduit de chaque cote — le track ne glisse plus
+    // via transform, on rejoue juste l'ordre visuel (voir style.css).
+    const isCoverflow = root.classList.contains('carrousel--coverflow');
+
     let index = 0;
     let autoplayTimer = null;
     let remainingTime = AUTOPLAY_DELAY;
     let slideStartedAt = null;
 
+    function updatePositionClasses() {
+      items.forEach((li, i2) => {
+        li.classList.remove('is-active', 'is-prev', 'is-next');
+        if (i2 === index) {
+          li.classList.add('is-active');
+        } else if (i2 === (index - 1 + items.length) % items.length) {
+          li.classList.add('is-prev');
+        } else if (i2 === (index + 1) % items.length) {
+          li.classList.add('is-next');
+        }
+      });
+    }
+
     function scrollToIndex(i) {
       index = (i + items.length) % items.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
+      if (!isCoverflow) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+      }
+      updatePositionClasses();
       updateDots();
     }
 
@@ -110,7 +131,11 @@
       const img = li.querySelector('img');
       if (!img) return;
       img.style.cursor = 'zoom-in';
-      img.addEventListener('click', () => openLightbox(i));
+      img.addEventListener('click', () => {
+        if (li.classList.contains('is-prev')) { prev(); resetAutoplay(); return; }
+        if (li.classList.contains('is-next')) { next(); resetAutoplay(); return; }
+        openLightbox(i);
+      });
     });
 
     const expandBtn = root.querySelector('.carrousel-expand');
@@ -164,6 +189,7 @@
       show(startIndex);
     }
 
+    updatePositionClasses();
     buildDots();
     startAutoplay();
   }
