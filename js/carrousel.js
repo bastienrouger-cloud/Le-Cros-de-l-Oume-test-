@@ -29,18 +29,28 @@
     function updateDots() {
       if (!dotsContainer) return;
       Array.from(dotsContainer.children).forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === index);
-        dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+        const isActive = i === index;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+        // relance l'animation de remplissage à chaque changement de slide
+        const fill = dot.querySelector('.fill');
+        if (fill) {
+          fill.style.animation = 'none';
+          void fill.offsetWidth; // force le reflow pour redémarrer l'animation
+          fill.style.animation = '';
+        }
       });
     }
 
     function buildDots() {
       if (!dotsContainer) return;
       dotsContainer.innerHTML = '';
+      root.style.setProperty('--carrousel-delay', `${AUTOPLAY_DELAY}ms`);
       items.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.setAttribute('aria-label', `Aller à l'image ${i + 1}`);
+        dot.innerHTML = '<span class="fill"></span>';
         dot.addEventListener('click', () => { scrollToIndex(i); resetAutoplay(); });
         dotsContainer.appendChild(dot);
       });
@@ -48,12 +58,17 @@
     }
 
     function startAutoplay() {
-      stopAutoplay();
+      clearAutoplayInterval();
       autoplayId = setInterval(next, AUTOPLAY_DELAY);
+      root.classList.remove('is-paused');
     }
-    function stopAutoplay() {
+    function clearAutoplayInterval() {
       if (autoplayId) clearInterval(autoplayId);
       autoplayId = null;
+    }
+    function stopAutoplay() {
+      clearAutoplayInterval();
+      root.classList.add('is-paused');
     }
     function resetAutoplay() {
       startAutoplay();
@@ -75,6 +90,11 @@
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => openLightbox(i));
     });
+
+    const expandBtn = root.querySelector('.carrousel-expand');
+    if (expandBtn) {
+      expandBtn.addEventListener('click', () => openLightbox(index));
+    }
 
     function openLightbox(startIndex) {
       stopAutoplay();

@@ -338,23 +338,70 @@ nav .submenu a {
   background: var(--color-cream-dark);
 }
 
+.carrousel-expand {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 6;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.carrousel-expand:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
+
 .carrousel-dots {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 8px;
-  margin-top: var(--gap-sm);
+  margin-top: var(--gap-md);
 }
+
 .carrousel-dots button {
+  position: relative;
   width: 10px;
-  height: 10px;
+  height: 6px;
   padding: 0;
   border: none;
-  border-radius: 50%;
+  border-radius: 3px;
   background: var(--color-border);
+  overflow: hidden;
   cursor: pointer;
+  transition: width 0.25s ease;
 }
+
 .carrousel-dots button.is-active {
+  width: 32px;
+}
+
+.carrousel-dots button .fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
   background: var(--color-accent);
+}
+
+.carrousel-dots button.is-active .fill {
+  animation: carrousel-fill var(--carrousel-delay, 4000ms) linear forwards;
+}
+
+.carrousel.is-paused .carrousel-dots .fill {
+  animation-play-state: paused;
+}
+
+@keyframes carrousel-fill {
+  from { width: 0%; }
+  to { width: 100%; }
 }
 
 /* --- Lightbox ------------------------------------------------------------- */
