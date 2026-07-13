@@ -19,7 +19,7 @@
 
     function scrollToIndex(i) {
       index = (i + items.length) % items.length;
-      items[index].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      track.style.transform = `translateX(-${index * 100}%)`;
       updateDots();
     }
 

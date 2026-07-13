@@ -271,36 +271,48 @@ nav .submenu a {
 }
 
 /* --- Carrousel -------------------------------------------------------------
-   Version simple, sans JS : scroll horizontal tactile natif.
-   Le JS (étape 6) ajoutera la navigation par flèches/points.
+   Cadre à taille fixe (aspect-ratio + overflow: hidden), une seule photo
+   visible à la fois. Le JS fait glisser .carrousel-track via transform,
+   les photos ne déforment jamais le cadre d'une image à l'autre.
    -------------------------------------------------------------------------- */
 
 .carrousel {
   padding: var(--gap-lg) 0;
 }
 
+.carrousel-viewport {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 640px) {
+  .carrousel-viewport {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 .carrousel-track {
   display: flex;
-  gap: var(--gap-md);
-  overflow-x: auto;
-  padding: 0 var(--gap-md) var(--gap-sm);
-  scroll-snap-type: x mandatory;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
 }
 
 .carrousel-track li {
-  flex: 0 0 260px;
-  scroll-snap-align: start;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .carrousel-track img {
-  border-radius: var(--radius-lg);
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
   width: 100%;
-}
-
-.carrousel-viewport {
-  position: relative;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .carrousel-prev,
