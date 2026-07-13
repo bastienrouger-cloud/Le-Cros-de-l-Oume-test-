@@ -280,10 +280,9 @@ nav .submenu a {
 .carrousel {
   padding: var(--gap-xl) 0;
   background-color: var(--color-sage-tint);
-  background-image: url('/assets/icons/mountains.svg');
-  background-repeat: repeat-x;
-  background-position: left bottom;
-  background-size: 220px auto;
+  background-image: url('/assets/icons/waves.svg');
+  background-repeat: repeat;
+  background-size: 100px 140px;
 }
 
 .carrousel-caption {
