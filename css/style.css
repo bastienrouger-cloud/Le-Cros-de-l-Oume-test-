@@ -52,21 +52,33 @@
   box-sizing: border-box;
 }
 
+/* html ET body en vert fonce (couleur du footer) : certains navigateurs
+   mobiles (Safari iOS notamment) se basent sur le fond de <body> plutot
+   que celui de <html> pour l'effet rebond du scroll (overscroll) en haut/
+   bas de page — les deux etant identiques, le rebond revele toujours du
+   vert (comme si le footer continuait) au lieu d'un flash de fond creme.
+   Le creme "reel" de la page passe donc sur <main> ci-dessous. */
+html,
+body {
+  background: var(--color-forest-dark);
+}
+
 html {
   scroll-behavior: smooth;
-  /* le footer est toujours le dernier element : si on le prolonge avec la
-     meme couleur sur <html>, l'effet rebond du scroll (overscroll) en bas
-     de page revele du vert fonce au lieu du fond creme du body, ce qui
-     donne l'impression que le footer continue au lieu de "couper". */
-  background: var(--color-forest-dark);
 }
 
 body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--color-text);
-  background: var(--color-bg);
   line-height: 1.6;
+}
+
+main {
+  /* fond reel du contenu (auparavant hérité de body, qui sert maintenant
+     de couleur de rebond invisible en dehors du document) */
+  display: block;
+  background: var(--color-bg);
 }
 
 h1, h2, h3 {
