@@ -280,8 +280,10 @@ nav .submenu a {
 .carrousel {
   padding: var(--gap-xl) 0;
   background-color: var(--color-sage-tint);
-  background-image: radial-gradient(rgba(138, 154, 128, 0.25) 1px, transparent 1.4px);
-  background-size: 36px 36px;
+  background-image: url('/assets/icons/mountains.svg');
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: 220px auto;
 }
 
 .carrousel-caption {
