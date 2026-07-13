@@ -36,21 +36,21 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 
 ## 4. HTML d'abord, sans style
 
-- [ ] Structure sémantique complète (header, nav, main, sections, footer) — pas commencé.
-- [ ] Header/footer en partials, inclus via JS (`fetch`) plutôt que dupliqués sur chaque page — décision prise, pas encore implémentée.
-- [ ] Contenu réel dans le HTML, pas de lorem ipsum.
+- [x] Structure sémantique complète (header, nav, main, sections, footer) — fait sur `index.html`.
+- [x] Header/footer en partials, inclus via JS (`fetch`) — fait (`partials/header.html`, `partials/footer.html`, `js/main.js`).
+- [x] Contenu réel dans le HTML, pas de lorem ipsum — fait pour l'index.
 
 ## 5. CSS ensuite
 
-- [ ] Mobile-first.
-- [ ] Variables CSS pour couleurs/fonts dès le départ (palette à définir — pas encore choisie pour ce projet).
-- [ ] Layout d'abord (grid/flexbox), détails ensuite.
+- [x] Mobile-first — `css/style.css`.
+- [x] Variables CSS pour couleurs/fonts : crème / vert sauge-forêt / terracotta / charbon, Playfair Display + Nunito Sans.
+- [x] Layout d'abord (grid/flexbox), détails ensuite — cartes en flexbox (centrage auto de la dernière ligne), nav responsive.
 
 ## 6. Interactivité (JS) si besoin
 
-- [ ] Formulaire de contact (pas encore décidé si Formspree, Netlify Forms, ou autre — projet d'entraînement donc pas d'enjeu réel de destinataire).
-- [ ] Menu mobile.
-- [ ] Carrousel d'images statique en JS (remplace le widget Instagram du vrai site).
+- [ ] Formulaire de contact (pas encore décidé si Formspree, Netlify Forms, ou autre — projet d'entraînement donc pas d'enjeu réel de destinataire). À faire avec `pages/contact.html`.
+- [x] Menu mobile — hamburger sous 860px, branché en JS (`initMobileNav`).
+- [ ] Carrousel d'images statique en JS : scroll horizontal natif fait, flèches/points de navigation pas encore ajoutés.
 
 ## 7. Responsive + tests
 
@@ -67,6 +67,8 @@ Roadmap générique de dev de site vitrine, adaptée à notre projet. On la met 
 - [ ] Hébergement : pas nécessaire ici (pas de client, pas de mise en prod), mais on peut simuler avec GitHub Pages pour s'entraîner à ce bout de la chaîne si tu veux.
 - [ ] DNS / SSL : sans objet pour ce projet, sauf si tu veux pousser l'exercice jusque-là.
 
-## Où on en est (à jour au 13/07/2026)
+## Où on en est (à jour au 13/07/2026, soir)
 
-Étapes 1 à 3 globalement posées. Prochaine étape concrète : squelette HTML sémantique de `index.html` + `partials/header.html` et `footer.html`, sur la branche `test`.
+Étapes 1 à 5 posées pour `index.html`. Étape 6 en partie faite (partials + menu mobile), reste : navigation carrousel et formulaire contact (lié à `pages/contact.html`, pas encore créée).
+
+Prochaine étape concrète : passer aux pages types — dupliquer le squelette de `index.html` (header/footer/style déjà externalisés, donc léger à dupliquer) pour créer la première page d'activité, ex. `pages/visite-ferme.html`, et valider le pattern avant de répliquer sur les autres.
