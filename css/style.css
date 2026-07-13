@@ -992,24 +992,19 @@ body.lightbox-open {
   }
 }
 
-/* Variante pour plus de 2 elements (ex. essai "Nos activites" sur
-   l'index) : passe en wrap avec les memes paliers/exceptions que
-   .cards-grid (on saute le "4 par ligne" pour ne jamais se retrouver
-   avec un 4+1 disproportionne). */
-.showcase-grid--activities {
+/* Variante pour 4 elements (essai "Nos activites" sur l'index, sans
+   Projet Loungta) : une colonne sur petit ecran, 2x2 des que la place le
+   permet — pas de palier "3 par ligne" intermediaire, sinon on retombe
+   sur un 3+1 disproportionne avec seulement 4 cartes. */
+.showcase-grid--quad {
   flex-wrap: wrap;
 }
-.showcase-grid--activities .showcase-card {
+.showcase-grid--quad .showcase-card {
   flex: 1 1 100%;
 }
 @media (min-width: 640px) {
-  .showcase-grid--activities .showcase-card {
+  .showcase-grid--quad .showcase-card {
     flex-basis: calc(50% - var(--gap-lg) / 2);
-  }
-}
-@media (min-width: 1000px) {
-  .showcase-grid--activities .showcase-card {
-    flex-basis: calc(33.333% - (var(--gap-lg) * 2 / 3));
   }
 }
 
