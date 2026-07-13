@@ -1062,26 +1062,49 @@ body.lightbox-open {
    permet — pas de palier "3 par ligne" intermediaire, sinon on retombe
    sur un 3+1 disproportionne avec seulement 4 cartes. */
 .showcase-grid--quad {
-  flex-wrap: wrap;
+  /* nowrap tant qu'on est en colonne (mobile) : avec flex-wrap: wrap actif
+     sur un conteneur en flex-direction: column, la taille automatique basee
+     sur l'aspect-ratio des cartes n'est pas appliquee (constate en test —
+     la hauteur retombe a 0 malgre une largeur correcte). wrap n'a de sens
+     qu'une fois passe en ligne (>=640px, 2x2), donc il est deplace dans le
+     media query juste en dessous. */
+  flex-wrap: nowrap;
 }
 .showcase-grid--quad .showcase-card {
-  flex: 1 1 100%;
+  flex: 1 1 auto;
 }
 @media (min-width: 640px) {
+  .showcase-grid--quad {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   .showcase-grid--quad .showcase-card {
-    flex-basis: calc(50% - var(--gap-lg) / 2);
+    flex: 0 1 calc(50% - var(--gap-lg) / 2);
   }
 }
 
 .showcase-card {
   position: relative;
   display: block;
-  flex: 1 1 0;
+  /* flex-basis: auto (pas 0) en mode empile (mobile, flex-direction: column) :
+     avec une base numerique (0 ou un %) et un conteneur de hauteur indefinie
+     (.showcase-grid n'a pas de hauteur fixe), la carte se retrouve avec une
+     hauteur nulle au lieu d'etre dimensionnee par son aspect-ratio — elle
+     "disparait" au lieu de s'empiler. En ligne (>=760px, voir plus bas),
+     flex-basis: 0 redevient correct pour repartir la largeur a l'identique
+     entre les cartes. */
+  flex: 1 1 auto;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-lg);
   overflow: hidden;
   color: var(--color-white);
   transition: transform var(--transition);
+}
+
+@media (min-width: 760px) {
+  .showcase-card {
+    flex: 1 1 0;
+  }
 }
 
 .showcase-card:hover {
