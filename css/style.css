@@ -108,11 +108,12 @@ header {
 }
 
 header .logo a {
-  font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--color-forest-dark);
-  text-decoration: none;
+  display: block;
+}
+
+header .logo img {
+  height: 48px;
+  width: auto;
 }
 
 nav ul {
@@ -195,11 +196,6 @@ nav .submenu a {
     display: block;
   }
 
-  /* sous-sous-menu (élevage) : décalé à droite du parent */
-  nav .submenu .has-submenu .submenu {
-    top: 0;
-    left: 100%;
-  }
 }
 
 /* --- Hero ----------------------------------------------------------------- */
