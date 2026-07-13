@@ -7,7 +7,6 @@
   const AUTOPLAY_DELAY = 4000;
 
   function initCarrousel(root) {
-    const viewport = root.querySelector('.carrousel-viewport');
     const track = root.querySelector('.carrousel-track');
     const items = Array.from(track.children);
     const prevBtn = root.querySelector('.carrousel-prev');
@@ -143,9 +142,21 @@
 
     // pause au survol du cadre uniquement (pas toute la section, donc pas
     // les points en dessous) ; le focus clavier, lui, couvre toute la section.
-    if (viewport) {
-      viewport.addEventListener('mouseenter', stopAutoplay);
-      viewport.addEventListener('mouseleave', startAutoplay);
+    // On ecoute sur .carrousel-track avec mouseover/mouseout (qui bullent
+    // depuis n'importe quel descendant) plutot que mouseenter/mouseleave
+    // sur .carrousel-viewport : en mode coverflow, les vignettes prev/next
+    // depassent visuellement du cadre de .carrousel-viewport (overflow
+    // visible), donc mouseenter/mouseleave — bases sur la boite geometrique
+    // de l'element ecoute — ratent ces zones et desynchronisent le minuteur
+    // a la reprise. mouseover/mouseout suivent l'arborescence DOM, pas la
+    // geometrie, donc ca marche meme quand une slide deborde visuellement.
+    if (track) {
+      track.addEventListener('mouseover', (e) => {
+        if (!track.contains(e.relatedTarget)) stopAutoplay();
+      });
+      track.addEventListener('mouseout', (e) => {
+        if (!track.contains(e.relatedTarget)) startAutoplay();
+      });
     }
     root.addEventListener('focusin', stopAutoplay);
     root.addEventListener('focusout', startAutoplay);
