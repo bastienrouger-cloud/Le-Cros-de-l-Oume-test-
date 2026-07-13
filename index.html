@@ -23,12 +23,16 @@
     </section>
 
     <section class="carrousel" aria-label="Photos de la ferme">
-      <!-- TODO : carrousel d'images statique, à brancher en JS (étape 6) -->
-      <ul class="carrousel-track">
-        <li><img src="/assets/images/placeholder-1.jpg" alt="Chevaux Irish Cob dans un pré de la Drôme"></li>
-        <li><img src="/assets/images/placeholder-2.jpg" alt="Balade à cheval en forêt"></li>
-        <li><img src="/assets/images/placeholder-3.jpg" alt="Chiot chien de protection de troupeau"></li>
-      </ul>
+      <div class="carrousel-viewport">
+        <button class="carrousel-prev" aria-label="Image précédente">&#10094;</button>
+        <ul class="carrousel-track">
+          <li><img src="/assets/images/placeholder-1.jpg" alt="Chevaux Irish Cob dans un pré de la Drôme"></li>
+          <li><img src="/assets/images/placeholder-2.jpg" alt="Balade à cheval en forêt"></li>
+          <li><img src="/assets/images/placeholder-3.jpg" alt="Chiot chien de protection de troupeau"></li>
+        </ul>
+        <button class="carrousel-next" aria-label="Image suivante">&#10095;</button>
+      </div>
+      <div class="carrousel-dots"></div>
     </section>
 
     <section class="activites">
@@ -73,5 +77,6 @@
   <div id="footer-placeholder"></div>
 
   <script src="/js/main.js" defer></script>
+  <script src="/js/carrousel.js" defer></script>
 </body>
 </html>

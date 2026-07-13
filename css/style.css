@@ -299,6 +299,90 @@ nav .submenu a {
   width: 100%;
 }
 
+.carrousel-viewport {
+  position: relative;
+}
+
+.carrousel-prev,
+.carrousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-forest-dark);
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.carrousel-prev { left: 8px; }
+.carrousel-next { right: 8px; }
+.carrousel-prev:hover,
+.carrousel-next:hover {
+  background: var(--color-cream-dark);
+}
+
+.carrousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: var(--gap-sm);
+}
+.carrousel-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-border);
+  cursor: pointer;
+}
+.carrousel-dots button.is-active {
+  background: var(--color-accent);
+}
+
+/* --- Lightbox ------------------------------------------------------------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: var(--radius);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: var(--gap-sm);
+}
+.lightbox-close { top: var(--gap-md); right: var(--gap-md); }
+.lightbox-prev { left: var(--gap-md); top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: var(--gap-md); top: 50%; transform: translateY(-50%); }
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
 /* --- Activités / cartes ---------------------------------------------------- */
 
 .activites {
