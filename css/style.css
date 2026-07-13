@@ -681,7 +681,9 @@ body.lightbox-open {
 }
 
 .page-content-text .cta {
-  margin-top: var(--gap-sm);
+  display: block;
+  width: fit-content;
+  margin: var(--gap-md) auto 0;
 }
 
 .page-intro {
@@ -694,8 +696,21 @@ body.lightbox-open {
 }
 
 .page-content-highlight {
-  font-weight: 600;
+  margin: var(--gap-sm) 0 0;
+}
+
+.page-content-schedule {
+  font-weight: 700;
   color: var(--color-forest-dark);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.page-content-price {
+  font-weight: 500;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin: 0.2rem 0 0;
 }
 
 /* --- Video (placeholder en attendant une vraie video YouTube) ------------- */
@@ -734,7 +749,7 @@ body.lightbox-open {
 /* --- FAQ / accordeon ------------------------------------------------------- */
 
 .faq {
-  max-width: 800px;
+  max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--gap-md) var(--gap-xl);
 }
