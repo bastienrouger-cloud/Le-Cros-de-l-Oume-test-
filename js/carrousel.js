@@ -15,7 +15,9 @@
     if (!track || items.length === 0) return;
 
     let index = 0;
-    let autoplayId = null;
+    let autoplayTimer = null;
+    let remainingTime = AUTOPLAY_DELAY;
+    let slideStartedAt = null;
 
     function scrollToIndex(i) {
       index = (i + items.length) % items.length;
@@ -57,20 +59,36 @@
       updateDots();
     }
 
-    function startAutoplay() {
-      clearAutoplayInterval();
-      autoplayId = setInterval(next, AUTOPLAY_DELAY);
-      root.classList.remove('is-paused');
+    // setTimeout (et non setInterval) + suivi du temps restant, pour que le
+    // minuteur JS reste synchronisé avec la barre CSS lors des pauses/reprises
+    // (sinon la barre visuelle se remplit avant que le JS ne change de photo).
+    function scheduleNext(delay) {
+      clearScheduledTimer();
+      slideStartedAt = Date.now();
+      remainingTime = delay;
+      autoplayTimer = setTimeout(() => {
+        next();
+        scheduleNext(AUTOPLAY_DELAY);
+      }, delay);
     }
-    function clearAutoplayInterval() {
-      if (autoplayId) clearInterval(autoplayId);
-      autoplayId = null;
+    function clearScheduledTimer() {
+      if (autoplayTimer) clearTimeout(autoplayTimer);
+      autoplayTimer = null;
+    }
+    function startAutoplay() {
+      root.classList.remove('is-paused');
+      scheduleNext(remainingTime);
     }
     function stopAutoplay() {
-      clearAutoplayInterval();
       root.classList.add('is-paused');
+      if (autoplayTimer) {
+        const elapsed = Date.now() - slideStartedAt;
+        remainingTime = Math.max(AUTOPLAY_DELAY - elapsed, 50);
+      }
+      clearScheduledTimer();
     }
     function resetAutoplay() {
+      remainingTime = AUTOPLAY_DELAY;
       startAutoplay();
     }
 
