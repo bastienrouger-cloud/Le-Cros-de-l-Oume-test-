@@ -284,19 +284,28 @@ nav .submenu a {
   }
 }
 
+/* le halo s'etend largement au-dela de l'embleme lui-meme, pour couvrir
+   toute la section .hero (qui le rogne proprement via overflow: hidden) au
+   lieu de rester une bulle circonscrite autour du cercle. */
 .hero-emblem-glow {
   position: absolute;
-  inset: -35%;
-  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  width: 220vw;
+  height: 220vw;
+  max-width: 2200px;
+  max-height: 2200px;
+  transform: translate(-50%, -50%);
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.55) 0%,
-    rgba(255, 255, 255, 0.15) 40%,
-    rgba(74, 93, 67, 0.05) 55%,
-    rgba(46, 43, 38, 0.35) 100%
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.12) 42%,
+    rgba(74, 93, 67, 0.04) 55%,
+    rgba(46, 43, 38, 0.22) 100%
   );
-  filter: blur(28px);
+  filter: blur(60px);
   z-index: 0;
+  pointer-events: none;
 }
 
 .hero-emblem-img {
